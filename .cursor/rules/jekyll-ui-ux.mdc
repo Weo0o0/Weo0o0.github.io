@@ -1,0 +1,15 @@
+---
+description: Jekyll Minimal Mistakes UI/UX constraints for Weo0o0-Note
+globs: "{_layouts,_includes,_sass,_pages,assets/css,assets/js}/**/*.{html,scss,css,js,md}"
+alwaysApply: false
+---
+
+This is a Jekyll + Minimal Mistakes blog, not a React/Tailwind app.
+
+When changing UI:
+
+1. Read `.cursor/skills/weo0o0-jekyll-ui/SKILL.md` and apply `impeccable`, `web-design-guidelines`, `frontend-design`, `check-fix-accessibility` as relevant.
+2. Put new visual tokens in `assets/css/main.scss` (before theme `@import`) or `_sass/_weo0o0-overrides.scss`. Do not grow `_sass/minimal-mistakes/` with site-only CSS.
+3. Keep Catppuccin Mocha surfaces (`#1e1e2e` base, `#cdd6f4` text) and brand teal `#00adb5`. Pair Gowun Batang (body) with Gowun Dodum (UI) and Pretendard fallback.
+4. Preserve dark `color-scheme`, `:focus-visible`, and `prefers-reduced-motion` rules.
+5. Verify with `npm run pa11y:home` / `npm run pa11y:ci` when a local Jekyll server is available.

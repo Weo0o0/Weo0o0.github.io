@@ -5,5 +5,31 @@ search: false
 
 @charset "utf-8";
 
+/*
+  Site overrides — set BEFORE theme imports so `!default` tokens do not win.
+  Palette: Catppuccin Mocha surfaces (catppuccin/catppuccin) + existing brand teal.
+  Type: Gowun Batang body / Gowun Dodum UI (yangheeryu) with Pretendard fallback.
+*/
+
+$background-color: #1e1e2e;
+$text-color: #cdd6f4;
+$primary-color: #00adb5;
+$border-color: #45475a;
+$code-background-color: #313244;
+$code-background-color-dark: #181825;
+$form-background-color: #313244;
+$footer-background-color: #181825;
+$muted-text-color: #a6adc8;
+
+$sans-serif: "Gowun Dodum", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+$serif: "Gowun Batang", Georgia, Times, serif;
+$sans-serif-narrow: $sans-serif;
+$global-font-family: $serif;
+$header-font-family: $serif;
+$caption-font-family: $sans-serif;
+
+@import url("https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&display=swap");
+
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
+@import "weo0o0-overrides";

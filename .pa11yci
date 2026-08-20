@@ -1,0 +1,18 @@
+{
+  "defaults": {
+    "runners": ["axe"],
+    "standard": "WCAG2AA",
+    "timeout": 30000,
+    "chromeLaunchConfig": {
+      "args": ["--no-sandbox", "--disable-dev-shm-usage"]
+    }
+  },
+  "urls": [
+    "http://127.0.0.1:4000/",
+    "http://127.0.0.1:4000/404.html",
+    "http://127.0.0.1:4000/search/",
+    "http://127.0.0.1:4000/categories/",
+    "http://127.0.0.1:4000/tags/",
+    "http://127.0.0.1:4000/year-archive/"
+  ]
+}

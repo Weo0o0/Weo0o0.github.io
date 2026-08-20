@@ -1,0 +1,85 @@
+/* ==========================================================================
+   Weo0o0-Note UI overrides (do not edit _sass/minimal-mistakes/*)
+   Tokens: Catppuccin Mocha + brand teal. Type: Gowun pair / Pretendard.
+   ========================================================================== */
+
+:root {
+  color-scheme: dark;
+  --note-base: #1e1e2e;
+  --note-mantle: #181825;
+  --note-crust: #11111b;
+  --note-surface: #313244;
+  --note-overlay: #45475a;
+  --note-text: #cdd6f4;
+  --note-subtext: #a6adc8;
+  --note-accent: #00adb5;
+  --note-accent-mocha: #94e2d5;
+  --note-font-ui: "Gowun Dodum", Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;
+  --note-font-body: "Gowun Batang", Georgia, Times, serif;
+  --note-focus: #94e2d5;
+}
+
+html {
+  background-color: var(--note-base);
+}
+
+.masthead,
+.greedy-nav,
+.btn,
+.page__footer,
+.sidebar,
+.pagination,
+.nav__list,
+.error-page {
+  font-family: var(--note-font-ui);
+}
+
+:focus-visible {
+  outline: 2px solid var(--note-focus);
+  outline-offset: 2px;
+}
+
+.skip-links a:focus,
+.skip-links a:focus-visible {
+  outline: 2px solid var(--note-focus);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* 404 — dark-skin aligned, no hardcoded light Material colors */
+.error-page {
+  text-align: center;
+  padding: 3rem 1rem 4rem;
+}
+
+.error-page__code {
+  margin: 0;
+  font-size: clamp(4rem, 12vw, 7.5rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--note-accent);
+  letter-spacing: -0.04em;
+}
+
+.error-page__title {
+  margin: 1rem 0 0.75rem;
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  color: var(--note-text);
+}
+
+.error-page__desc {
+  margin: 0 auto 2rem;
+  max-width: 36rem;
+  color: var(--note-subtext);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
