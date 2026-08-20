@@ -1,5 +1,27 @@
 [
   {
+    "slug": "page-agent",
+    "title": "page-agent - JavaScript in-page GUI agent. Control web interfaces with natural language.",
+    "date": "2026-08-20",
+    "categories": [
+      "AI-Agent"
+    ],
+    "tags": [
+      "ai",
+      "browser-automation",
+      "vibe-coding",
+      "typescript",
+      "javascript",
+      "css",
+      "agent",
+      "ai-agents"
+    ],
+    "excerpt": "> JavaScript in-page GUI agent. Control web interfaces with natural language. |------|-----|...",
+    "readingTime": "5 min read",
+    "published": true,
+    "toc": true
+  },
+  {
     "slug": "Types-of-Permissions",
     "title": "관리자 권한의 종류와 시스템 권한",
     "date": "2024-07-30",
