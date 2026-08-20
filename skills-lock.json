@@ -31,6 +31,12 @@
       "skillPath": ".agents/skills/impeccable/SKILL.md",
       "computedHash": "37354ec7825c618102ef4c03062c866f95752d799f7825da69438c697e0ee05e"
     },
+    "product-manager-skills": {
+      "source": "Digidai/product-manager-skills",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "56cf440336574a218cfa92462ec127a43893dbcb7524532d10e7a8b4a80fb0d2"
+    },
     "web-design-engineer": {
       "source": "mintz-studio/web-design-skill",
       "sourceType": "github",
