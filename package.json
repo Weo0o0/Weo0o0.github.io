@@ -1,27 +1,36 @@
 {
-  "name": "minimal-mistakes",
+  "name": "weo0o0-note",
+  "version": "1.0.0",
   "private": true,
-  "version": "4.26.2",
-  "description": "Minimal Mistakes 2 column Jekyll theme.",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/mmistakes/minimal-mistakes.git"
+  "description": "Weo0o0-Note - 다양한 프로젝트 소개 및 개발하는 블로그",
+  "scripts": {
+    "dev": "next dev",
+    "build": "node scripts/generate-search-index.js && next build",
+    "start": "next start",
+    "lint": "eslint",
+    "search-index": "node scripts/generate-search-index.js"
   },
-  "keywords": [
-    "jekyll",
-    "theme",
-    "minimal"
-  ],
-  "author": "Michael Rose",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/mmistakes/minimal-mistakes/issues"
-  },
-  "homepage": "https://mmistakes.github.io/minimal-mistakes/",
-  "engines": {
-    "node": ">= 0.10.0"
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "lucide-react": "^1.16.0",
+    "next": "16.2.6",
+    "next-mdx-remote": "^5.0.0",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "reading-time": "^1.5.0",
+    "rehype-autolink-headings": "^7.1.0",
+    "rehype-highlight": "^7.0.2",
+    "rehype-slug": "^6.0.0",
+    "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
-    "uglify-js": "^3.17.4"
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.6",
+    "tailwindcss": "^4",
+    "typescript": "^5"
   }
 }

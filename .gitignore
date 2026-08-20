@@ -1,32 +1,40 @@
-# Vim
-*~
-*.sw[p_]
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
 
-# IntelliJ IDEA
-*.idea
+# next.js
+/.next/
+/out/
 
-# Sublime Text
-*.sublime-project
-*.sublime-workspace
+# production
+/build
 
-# Ruby Gem
-*.gem
-.bundle
-Gemfile.lock
-**/vendor/bundle
-
-# Node.js and NPM
-node_modules
-npm-debug.log*
-package-lock.json
-codekit-config.json
-
-# macOS
+# misc
 .DS_Store
+*.pem
 
-# Jekyll generated files
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files
+.env*.local
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# ruby/jekyll (legacy)
 .jekyll-cache
-.jekyll-metadata
-.sass-cache
-_asset_bundler_cache
 _site
+.bundle
+vendor/bundle
+Gemfile.lock
