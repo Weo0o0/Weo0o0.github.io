@@ -1,0 +1,9 @@
+---
+description: Amelia skill-advisor — route vague blog/UI chat to the right installed skill
+globs: 
+alwaysApply: false
+---
+
+When the user is unsure which Cursor skill to use, describes a vague blog/UI goal, or asks for a recommendation ("어떤 스킬", "뭐부터", "추천"), load and follow `.cursor/skills/skill-advisor/SKILL.md`.
+
+Respond in Korean, prefix with 👩‍💻, recommend one primary skill from `.cursor/skills/README.md`, and give a paste-ready prompt. Do not jump to large UI edits while only advising.
