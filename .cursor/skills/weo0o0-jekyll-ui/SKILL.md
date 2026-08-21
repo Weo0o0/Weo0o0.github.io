@@ -9,13 +9,15 @@ This site is **Jekyll + Minimal Mistakes + Liquid + SCSS + jQuery**. Do not intr
 
 ## Skills to load (in order)
 
+0. `skill-advisor` — when the user is unsure which skill to call; route intent first.
 1. `impeccable` — `/impeccable critique` then polish. Existing-site first.
 2. `web-design-guidelines` — audit `_layouts/`, `_includes/`, `_pages/`.
 3. `frontend-design` — only after critique; keep dark editorial blog identity (not purple-gradient AI defaults).
 4. `web-design-engineer` — HTML/CSS/JS artifacts when a new surface is needed.
-5. `check-fix-accessibility` — WCAG 2.2 A/AA on Liquid/HTML/SCSS.
+5. `check-frontend-accessibility` — WCAG 2.2 A/AA on Liquid/HTML/SCSS.
 6. `effective-ui-design` — contrast, 8pt spacing, `clamp()`, `prefers-reduced-motion`, dark `color-scheme`.
 7. `extract-design-system` — dump tokens from `_sass` / live site into CSS variables; do not fork theme core.
+8. `product-manager-skills` — prioritize blog work / short PRD before large UI changes.
 
 ## Where to edit
 
