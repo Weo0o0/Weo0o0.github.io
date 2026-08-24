@@ -4,7 +4,6 @@ title: "관리자 권한의 종류와 시스템 권한"
 categories: etc
 tag: [이론, 권한]
 toc: true
-author_profile: false
 ---
 
 **[공지사항]** [본 블로그에 포함된 모든 정보는 교육 목적으로만 제공됩니다.](https://weo0o0.github.io/notice/notice/)

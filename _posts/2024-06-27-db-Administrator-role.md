@@ -4,7 +4,6 @@ title:  "데이터베이스 관리자 역활"
 categories: Database
 tag: [데이터베이스, 관리자 권한, 이론]
 toc: true
-author_profile: false
 published: true
 ---
 **[공지사항]** [본 블로그에 포함된 모든 정보는 교육 목적으로만 제공됩니다.](https://weo0o0.github.io/notice/notice/)

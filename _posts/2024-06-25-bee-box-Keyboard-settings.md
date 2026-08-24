@@ -4,7 +4,6 @@ title:  "bee-box 키보드 설정방법"
 categories: bee-box
 tag: [bee-box, 설정]
 toc: true
-author_profile: false
 sidebar:
     nav: "docs"
 ---

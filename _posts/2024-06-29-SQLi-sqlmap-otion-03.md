@@ -4,7 +4,6 @@ title:  "SQLi-sqlma 옵션 리스트 03"
 categories: SQLi
 tag: [SQLi, sqlmap, 이론, 옵션]
 toc: true
-author_profile: false
 ---
 
 **[공지사항]** [본 블로그에 포함된 모든 정보는 교육 목적으로만 제공됩니다.](https://weo0o0.github.io/notice/notice/)
