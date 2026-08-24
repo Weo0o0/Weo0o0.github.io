@@ -21,6 +21,12 @@
   "engines": {
     "node": ">= 0.10.0"
   },
+  "scripts": {
+    "pa11y:home": "npx --yes pa11y --runner axe http://127.0.0.1:4000/",
+    "pa11y:404": "npx --yes pa11y --runner axe http://127.0.0.1:4000/404.html",
+    "pa11y:search": "npx --yes pa11y --runner axe http://127.0.0.1:4000/search/",
+    "pa11y:ci": "npx --yes pa11y-ci"
+  },
   "devDependencies": {
     "uglify-js": "^3.17.4"
   }

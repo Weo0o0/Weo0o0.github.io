@@ -30,3 +30,9 @@ codekit-config.json
 .sass-cache
 _asset_bundler_cache
 _site
+
+# skills CLI canonical copy (project skills live in .cursor/skills/)
+.agents/
+
+# impeccable critique snapshots
+.impeccable/

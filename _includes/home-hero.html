@@ -1,0 +1,29 @@
+{% assign latest_post = site.posts | first %}
+{% assign headline = page.hero.headline | default: "밤에 읽히는 시스템 노트" %}
+{% assign support = page.hero.support | default: "권한·네트워크·보안을 한 편씩 정리한 개인 노트입니다." %}
+{% assign cta_primary = page.hero.cta_primary | default: "최신 글 읽기" %}
+{% assign cta_secondary = page.hero.cta_secondary | default: "아카이브 둘러보기" %}
+{% assign archive_url = page.hero.archive_url | default: "/year-archive/" %}
+
+<section class="home-hero" aria-labelledby="home-hero-headline">
+  <p class="home-hero__brand">{{ site.title }}</p>
+  <h1 id="home-hero-headline" class="home-hero__headline">{{ headline }}</h1>
+  <div class="home-hero__mark" aria-hidden="true"></div>
+  <p class="home-hero__support">{{ support }}</p>
+  <div class="home-hero__actions">
+    {% if latest_post %}
+      <a
+        href="{{ latest_post.url | relative_url }}"
+        class="home-hero__cta home-hero__cta--primary"
+      >
+        {{ cta_primary }}
+      </a>
+    {% endif %}
+    <a
+      href="{{ archive_url | relative_url }}"
+      class="home-hero__cta home-hero__cta--ghost"
+    >
+      {{ cta_secondary }}
+    </a>
+  </div>
+</section>

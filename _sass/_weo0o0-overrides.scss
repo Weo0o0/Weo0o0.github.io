@@ -1,0 +1,199 @@
+/* ==========================================================================
+   Weo0o0-Note UI overrides (do not edit _sass/minimal-mistakes/*)
+   Tokens: Catppuccin Mocha + brand teal. Type: Gowun pair / Pretendard.
+   ========================================================================== */
+
+:root {
+  color-scheme: dark;
+  --note-base: #1e1e2e;
+  --note-mantle: #181825;
+  --note-crust: #11111b;
+  --note-surface: #313244;
+  --note-overlay: #45475a;
+  --note-text: #cdd6f4;
+  --note-subtext: #a6adc8;
+  --note-accent: #00adb5;
+  --note-accent-mocha: #94e2d5;
+  --note-font-ui: "Gowun Dodum", Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;
+  --note-font-body: "Gowun Batang", Georgia, Times, serif;
+  --note-focus: #94e2d5;
+}
+
+html {
+  background-color: var(--note-base);
+}
+
+.masthead,
+.greedy-nav,
+.btn,
+.page__footer,
+.sidebar,
+.pagination,
+.nav__list,
+.error-page {
+  font-family: var(--note-font-ui);
+}
+
+:focus-visible {
+  outline: 2px solid var(--note-focus);
+  outline-offset: 2px;
+}
+
+.skip-links a:focus,
+.skip-links a:focus-visible {
+  outline: 2px solid var(--note-focus);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* 404 — dark-skin aligned, no hardcoded light Material colors */
+.error-page {
+  text-align: center;
+  padding: 3rem 1rem 4rem;
+}
+
+.error-page__code {
+  margin: 0;
+  font-size: clamp(4rem, 12vw, 7.5rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--note-accent);
+  letter-spacing: -0.04em;
+}
+
+.error-page__title {
+  margin: 1rem 0 0.75rem;
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  color: var(--note-text);
+}
+
+.error-page__desc {
+  margin: 0 auto 2rem;
+  max-width: 36rem;
+  color: var(--note-subtext);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+/* Home — Now hero (PRD: brand + headline + support + CTA) */
+.layout--home .archive > .page__title:empty {
+  display: none;
+  margin: 0;
+  padding: 0;
+}
+
+.home-hero {
+  margin: 0 0 2rem;
+  padding: clamp(1.5rem, 4vw, 2.25rem) clamp(1rem, 3vw, 1.5rem);
+  background-color: var(--note-mantle);
+  border: 1px solid var(--note-overlay);
+  border-radius: 8px;
+}
+
+.home-hero__brand {
+  margin: 0 0 0.75rem;
+  font-family: var(--note-font-ui);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--note-subtext);
+}
+
+.home-hero__headline {
+  margin: 0;
+  max-width: 22ch;
+  font-family: var(--note-font-body);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--note-text);
+  text-wrap: pretty;
+}
+
+.home-hero__mark {
+  width: 3rem;
+  height: 3px;
+  margin: 1rem 0 1.125rem;
+  background-color: var(--note-accent);
+  border-radius: 1px;
+}
+
+.home-hero__support {
+  margin: 0 0 1.5rem;
+  max-width: 38ch;
+  font-family: var(--note-font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--note-subtext);
+  text-wrap: pretty;
+}
+
+.home-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+}
+
+.home-hero__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.625rem 1.125rem;
+  font-family: var(--note-font-ui);
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration: none;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.home-hero__cta--primary {
+  color: var(--note-crust);
+  background-color: var(--note-accent);
+  border-color: var(--note-accent);
+}
+
+.home-hero__cta--primary:hover,
+.home-hero__cta--primary:focus-visible {
+  color: var(--note-crust);
+  background-color: #009aa1;
+  border-color: #009aa1;
+}
+
+.home-hero__cta--ghost {
+  color: var(--note-text);
+  background-color: transparent;
+  border-color: var(--note-overlay);
+}
+
+.home-hero__cta--ghost:hover,
+.home-hero__cta--ghost:focus-visible {
+  color: var(--note-text);
+  background-color: var(--note-surface);
+  border-color: var(--note-overlay);
+}
+
+@media (max-width: 600px) {
+  .home-hero__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .home-hero__cta {
+    width: 100%;
+  }
+}

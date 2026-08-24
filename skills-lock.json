@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "skills": {
+    "check-fix-accessibility": {
+      "source": "Neha/check-fix-accessibility",
+      "sourceType": "github",
+      "skillPath": "check-fix-accessibility/SKILL.md",
+      "computedHash": "d08fc09c28f5956d710af053f49d3ae90a3794399fc941802c5593cbe22692de"
+    },
+    "effective-ui-design": {
+      "source": "sebastian-software/effective-ui-design-skill",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "23389322c8e546fa77d88f7b9c1864a85fb2d07ce7e1d0299581e693c2bd5e65"
+    },
+    "extract-design-system": {
+      "source": "arvindrk/extract-design-system",
+      "sourceType": "github",
+      "skillPath": "skills/extract-design-system/SKILL.md",
+      "computedHash": "5f231fda377e304b202848f09ecc0fd42839355e76f60e06c3ceb7a643c15500"
+    },
+    "frontend-design": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "skillPath": "skills/frontend-design/SKILL.md",
+      "computedHash": "4eabc66183767153e404b39d1b839b1c37f2d82d86f0a0d7e880a579d8d62336"
+    },
+    "impeccable": {
+      "source": "pbakaus/impeccable",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/impeccable/SKILL.md",
+      "computedHash": "37354ec7825c618102ef4c03062c866f95752d799f7825da69438c697e0ee05e"
+    },
+    "product-manager-skills": {
+      "source": "Digidai/product-manager-skills",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "56cf440336574a218cfa92462ec127a43893dbcb7524532d10e7a8b4a80fb0d2"
+    },
+    "web-design-engineer": {
+      "source": "mintz-studio/web-design-skill",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/web-design-engineer/SKILL.md",
+      "computedHash": "eba6371017f0de9b38b503536fae8df303748aea060a5ce2722a7f64a75df18d"
+    },
+    "web-design-guidelines": {
+      "source": "vercel-labs/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/web-design-guidelines/SKILL.md",
+      "computedHash": "f3bc47f890f42a44db1007ab390709ec368e4b8c089baee6b0007182236ac474"
+    }
+  }
+}
