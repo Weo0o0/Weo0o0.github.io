@@ -5,7 +5,6 @@ title: "해커관점에서 본 권한과 자격"
 categories: etc
 tag: [이론, 권한, 자격]
 toc: true
-author_profile: false
 
 ---
 

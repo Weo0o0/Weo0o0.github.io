@@ -4,7 +4,6 @@ title:  "SQLi-sqlmap-03"
 categories: coding
 tag: [python, blog]
 toc: true
-author_profile: false
 published: false
 ---
 
