@@ -1,0 +1,49 @@
+{% comment %}
+  Home list excerpt: skip site-wide notice boilerplate, use first substantive body text.
+  Output: assign `home_excerpt` (plain text, may be empty).
+{% endcomment %}
+{% assign home_excerpt = "" %}
+{% assign raw_excerpt = post.excerpt | markdownify | strip_html | strip | replace: "  ", " " %}
+{% assign is_notice_boilerplate = false %}
+
+{% if raw_excerpt contains "교육 목적으로만 제공" or raw_excerpt contains "[공지사항]" %}
+  {% assign is_notice_boilerplate = true %}
+{% endif %}
+
+{% unless is_notice_boilerplate %}
+  {% assign home_excerpt = raw_excerpt %}
+{% else %}
+  {% assign sections = post.content | split: "## " %}
+  {% if sections.size > 1 %}
+    {% assign body_chunk = sections[1] %}
+    {% assign body_lines = body_chunk | split: "
+" %}
+    {% for line in body_lines %}
+      {% assign paragraph = line | strip %}
+      {% if paragraph == "" %}
+        {% continue %}
+      {% endif %}
+      {% if paragraph contains "#" %}
+        {% continue %}
+      {% endif %}
+      {% if paragraph contains "![" %}
+        {% continue %}
+      {% endif %}
+      {% if paragraph contains "<" %}
+        {% continue %}
+      {% endif %}
+      {% if paragraph contains "{:" %}
+        {% continue %}
+      {% endif %}
+      {% if paragraph contains "**[" %}
+        {% continue %}
+      {% endif %}
+      {% assign candidate = paragraph | markdownify | strip_html | strip | replace: "  ", " " %}
+      {% if candidate.size < 24 %}
+        {% continue %}
+      {% endif %}
+      {% assign home_excerpt = candidate %}
+      {% break %}
+    {% endfor %}
+  {% endif %}
+{% endunless %}

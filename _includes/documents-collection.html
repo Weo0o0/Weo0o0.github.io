@@ -9,5 +9,9 @@
 {% endif %}
 
 {%- for post in entries -%}
-  {% include archive-single.html type=include.type %}
+  {% if include.variant == 'home' %}
+    {% include archive-single-home.html type=include.type %}
+  {% else %}
+    {% include archive-single.html type=include.type %}
+  {% endif %}
 {%- endfor -%}
