@@ -197,3 +197,11 @@ html {
     width: 100%;
   }
 }
+
+.layout--home .archive__item-excerpt--home {
+  margin-top: 0.35rem;
+  color: var(--note-subtext);
+  font-family: var(--note-font-body);
+  line-height: 1.65;
+  text-wrap: pretty;
+}
