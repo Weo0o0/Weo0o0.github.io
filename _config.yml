@@ -16,6 +16,7 @@ minimal_mistakes_skin    : "dark" # "air", "aqua", "contrast", "dark", "dirt", "
 
 # Site Settings
 locale                   : "ko-KR"
+date_format              : "%Y년 %-m월 %-d일"
 rtl                      : # true, false (default) # turns direction of the page into right to left for RTL languages
 title                    : "Weo0o0-Note"
 title_separator          : "|"
@@ -115,7 +116,7 @@ analytics:
 author:
   name             : "Weo0o0-Note"
   avatar           : "assets/images/logo.jpg"
-  bio              : "방갑습니다🤗"
+  bio              : "반갑습니다🤗"
   location         : "Daejeon, South Korea"
   email            : #
   links:
@@ -315,7 +316,7 @@ defaults:
       share: true
       related: true
       show_date: true
-      date_format: "%Y-%m-%d"
+      date_format: "%Y년 %-m월 %-d일"
       toc: true
       toc_sticky: true
       toc_label: 목차
