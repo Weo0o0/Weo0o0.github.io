@@ -10,24 +10,29 @@
   {% assign title = post.title %}
 {% endif %}
 
+{% assign show_excerpt = include.show_excerpt | default: false %}
+{% assign excerpt_limit = include.excerpt_limit | default: 160 %}
+
 <div class="{{ include.type | default: 'list' }}__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork"{% if post.locale %} lang="{{ post.locale }}"{% endif %}>
+  <article class="archive__item{% unless show_excerpt %} archive__item--compact{% endunless %}" itemscope itemtype="https://schema.org/CreativeWork"{% if post.locale %} lang="{{ post.locale }}"{% endif %}>
     {% if include.type == "grid" and teaser %}
       <div class="archive__item-teaser">
         <img src="{{ teaser | relative_url }}" alt="">
       </div>
     {% endif %}
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h3 class="archive__item-title no_toc" itemprop="headline">
       {% if post.link %}
         <a href="{{ post.link }}">{{ title }}</a> <a href="{{ post.url | relative_url }}" rel="permalink"><i class="fas fa-link" aria-hidden="true"></i><span class="sr-only">{{ site.data.ui-text[site.locale].permalink_label | default: "고유 링크" }}</span></a>
       {% else %}
         <a href="{{ post.url | relative_url }}" rel="permalink">{{ title }}</a>
       {% endif %}
-    </h2>
+    </h3>
     {% include page__meta.html type=include.type %}
-    {% include home-excerpt.html %}
-    {% if home_excerpt != "" %}
-      <p class="archive__item-excerpt archive__item-excerpt--smart" itemprop="description">{{ home_excerpt | truncate: 160 }}</p>
+    {% if show_excerpt %}
+      {% include home-excerpt.html %}
+      {% if home_excerpt != "" %}
+        <p class="archive__item-excerpt archive__item-excerpt--smart" itemprop="description">{{ home_excerpt | truncate: excerpt_limit }}</p>
+      {% endif %}
     {% endif %}
   </article>
 </div>

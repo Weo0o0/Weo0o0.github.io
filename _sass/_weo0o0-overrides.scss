@@ -317,9 +317,28 @@ html {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin: 0 0 1.75rem;
+  margin: 0;
   padding: 0;
   list-style: none;
+}
+
+.layout--posts .taxonomy__index-wrap,
+.layout--categories .taxonomy__index-wrap,
+.layout--tags .taxonomy__index-wrap {
+  margin: 0 0 1rem;
+  padding: 0.85rem;
+  background-color: var(--note-mantle);
+  border: 1px solid var(--note-overlay);
+  border-radius: 8px;
+}
+
+/* Tags — sticky jump index so Kai can skim without per-section back-to-top */
+.layout--tags .taxonomy__index-wrap {
+  position: sticky;
+  top: 0.75rem;
+  z-index: 2;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 8px 24px rgba(17, 17, 27, 0.35);
 }
 
 .layout--posts .taxonomy__index a,
@@ -372,14 +391,90 @@ html {
 .layout--posts .archive__subtitle,
 .layout--categories .archive__subtitle,
 .layout--tags .archive__subtitle {
-  margin: 0 0 1rem;
-  padding-bottom: 0.5rem;
+  margin: 1.75rem 0 0.55rem;
+  padding-bottom: 0.4rem;
   font-family: var(--note-font-body);
   font-size: clamp(1.15rem, 2.5vw, 1.35rem);
   font-weight: 700;
   color: var(--note-text);
-  border-bottom: 1px solid var(--note-overlay);
+  border-bottom: 1px solid rgba(0, 173, 181, 0.35);
   text-wrap: pretty;
+}
+
+.layout--posts .taxonomy__section:first-of-type .archive__subtitle,
+.layout--categories .taxonomy__section:first-of-type .archive__subtitle,
+.layout--tags .taxonomy__section:first-of-type .archive__subtitle {
+  margin-top: 1.1rem;
+}
+
+.taxonomy__hint {
+  margin: 0.35rem 0 0.25rem;
+  max-width: 38rem;
+  font-family: var(--note-font-ui);
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: var(--note-subtext);
+  text-wrap: pretty;
+}
+
+/* Single-year index: keep chip scannable even when alone */
+.layout--posts .taxonomy__index-wrap:has(.taxonomy__index li:only-child) .taxonomy__index a {
+  min-height: 3rem;
+  padding-inline: 1rem;
+  font-size: 1rem;
+}
+
+.layout--posts .taxonomy__index-wrap:has(.taxonomy__index li:only-child) .taxonomy__count {
+  font-size: 0.95rem;
+}
+
+.archive-back {
+  margin: 2rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(205, 214, 244, 0.12);
+  font-family: var(--note-font-ui);
+  font-size: 0.95rem;
+}
+
+.archive-back .back-to-top {
+  color: var(--note-accent);
+  text-decoration: none;
+}
+
+.archive-back .back-to-top:hover,
+.archive-back .back-to-top:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+/* Compact archive rows — title + date + read time as scan axis */
+.archive__item.archive__item--compact {
+  margin-bottom: 0;
+}
+
+.entries-list .list__item:has(.archive__item--compact) {
+  padding-top: 0.45rem;
+  padding-bottom: 0.45rem;
+}
+
+.archive__item.archive__item--compact .archive__item-title {
+  margin: 0 0 0.15rem;
+  font-size: clamp(1.05rem, 0.35vw + 1rem, 1.2rem);
+  line-height: 1.35;
+}
+
+.archive__item.archive__item--compact .page__meta {
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+.layout--tags .taxonomy__index-wrap {
+  max-height: min(40vh, 16rem);
+  overflow: auto;
+}
+
+.layout--tags .taxonomy__section {
+  margin-bottom: 0.35rem;
 }
 
 /* Primary button — white on teal fails AA; crust on accent ≈ 6.8:1 */

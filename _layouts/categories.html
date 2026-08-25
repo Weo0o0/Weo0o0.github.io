@@ -4,4 +4,9 @@ layout: archive
 
 {{ content }}
 
-{% include posts-taxonomy.html taxonomies=site.categories %}
+{% include posts-taxonomy.html
+  taxonomies=site.categories
+  show_excerpt=false
+  index_label="카테고리 바로가기"
+  hint="카테고리 칩으로 이동한 뒤, 제목과 날짜로 훑어보세요."
+%}

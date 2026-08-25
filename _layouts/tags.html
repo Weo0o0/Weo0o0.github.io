@@ -4,4 +4,9 @@ layout: archive
 
 {{ content }}
 
-{% include posts-taxonomy.html taxonomies=site.tags %}
+{% include posts-taxonomy.html
+  taxonomies=site.tags
+  show_excerpt=false
+  index_label="태그 바로가기"
+  hint="같은 글이 여러 태그에 나타날 수 있습니다. 위 칩으로 이동한 뒤 제목·날짜로 훑으세요."
+%}
