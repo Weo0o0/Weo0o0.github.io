@@ -19,7 +19,10 @@ layout: default
 
   <div class="archive">
     {% unless page.header.overlay_color or page.header.overlay_image %}
-      <h1 id="page-title" class="page__title"{% if page.locale %} lang="{{ page.locale }}"{% endif %}>{{ page.title }}</h1>
+      <header class="archive-band">
+        <h1 id="page-title" class="page__title archive-band__title"{% if page.locale %} lang="{{ page.locale }}"{% endif %}>{{ page.title }}</h1>
+        <div class="archive-band__mark" aria-hidden="true"></div>
+      </header>
     {% endunless %}
     {{ content }}
   </div>
