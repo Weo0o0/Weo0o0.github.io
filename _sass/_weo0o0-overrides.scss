@@ -39,9 +39,68 @@ html {
   outline-offset: 2px;
 }
 
+/* Skip links — readable on dark skin (theme default: white bg, no color) */
+.screen-reader-shortcut:focus,
+.screen-reader-shortcut:focus-visible,
 .skip-links a:focus,
 .skip-links a:focus-visible {
+  color: var(--note-crust);
+  background-color: var(--note-accent);
   outline: 2px solid var(--note-focus);
+  outline-offset: 2px;
+  box-shadow: none;
+}
+
+/* Restore focus where theme sets outline: none */
+.greedy-nav__toggle:focus-visible,
+.search__toggle:focus-visible,
+.layout--search .search-input:focus-visible,
+.search-content .search-input:focus-visible {
+  outline: 2px solid var(--note-focus);
+  outline-offset: 2px;
+}
+
+/* Touch targets — aim 44×44 (best practice); WCAG 2.5.8 AA ≥ 24×24 */
+.greedy-nav__toggle,
+.search__toggle {
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn {
+  min-height: 2.75rem;
+  padding: 0.625rem 1.125rem;
+  font-size: 0.9rem;
+  line-height: 1.2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+}
+
+.greedy-nav .visible-links a,
+.taxonomy__index a,
+.pagination--pager,
+.back-to-top {
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  touch-action: manipulation;
+}
+
+.taxonomy__index a {
+  padding-block: 0.35rem;
+}
+
+#main,
+#site-nav,
+#footer,
+.taxonomy__section,
+[id] {
+  scroll-margin-top: 4.5rem;
 }
 
 @media (prefers-reduced-motion: reduce) {

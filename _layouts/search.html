@@ -23,20 +23,39 @@ layout: default
     {{ content }}
 
     {%- assign search_provider = site.search_provider | default: "lunr" -%}
+    {%- assign search_label = site.data.ui-text[site.locale].search_label_text | default: site.data.ui-text[site.locale].search_placeholder_text | default: "검색어를 입력하세요…" -%}
     {%- case search_provider -%}
       {%- when "lunr" -%}
-        <input type="text" id="search" class="search-input" placeholder="{{ site.data.ui-text[site.locale].search_placeholder_text | default: 'Enter your search term...' }}" />
-        <div id="results" class="results"></div>
+        <label class="visually-hidden" for="search">{{ search_label }}</label>
+        <input
+          type="search"
+          id="search"
+          class="search-input"
+          name="q"
+          autocomplete="off"
+          spellcheck="false"
+          placeholder="{{ site.data.ui-text[site.locale].search_placeholder_text | default: '검색어를 입력하세요…' }}"
+        />
+        <div id="results" class="results" role="region" aria-live="polite" aria-atomic="true"></div>
       {%- when "google" -%}
         <form onsubmit="return googleCustomSearchExecute();" id="cse-search-box-form-id">
-        <input type="text" id="cse-search-input-box-id" class="search-input" placeholder="{{ site.data.ui-text[site.locale].search_placeholder_text | default: 'Enter your search term...' }}" />
+          <label class="visually-hidden" for="cse-search-input-box-id">{{ search_label }}</label>
+          <input
+            type="search"
+            id="cse-search-input-box-id"
+            class="search-input"
+            name="q"
+            autocomplete="off"
+            spellcheck="false"
+            placeholder="{{ site.data.ui-text[site.locale].search_placeholder_text | default: '검색어를 입력하세요…' }}"
+          />
         </form>
-        <div id="results" class="results">
+        <div id="results" class="results" role="region" aria-live="polite" aria-atomic="true">
           <gcse:searchresults-only></gcse:searchresults-only>
         </div>
       {%- when "algolia" -%}
         <div class="search-searchbar"></div>
-        <div class="search-hits"></div>
+        <div class="search-hits" role="region" aria-live="polite" aria-atomic="true"></div>
     {%- endcase -%}
   </div>
 </div>
