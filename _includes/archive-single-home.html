@@ -17,13 +17,13 @@
         <img src="{{ teaser | relative_url }}" alt="">
       </div>
     {% endif %}
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <h3 class="archive__item-title no_toc" itemprop="headline">
       {% if post.link %}
         <a href="{{ post.link }}">{{ title }}</a> <a href="{{ post.url | relative_url }}" rel="permalink"><i class="fas fa-link" aria-hidden="true"></i><span class="sr-only">{{ site.data.ui-text[site.locale].permalink_label | default: "고유 링크" }}</span></a>
       {% else %}
         <a href="{{ post.url | relative_url }}" rel="permalink">{{ title }}</a>
       {% endif %}
-    </h2>
+    </h3>
     {% include page__meta.html type=include.type %}
     {% include home-excerpt.html %}
     {% if home_excerpt != "" %}

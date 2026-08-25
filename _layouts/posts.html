@@ -4,27 +4,41 @@ layout: archive
 
 {{ content }}
 
-<ul class="taxonomy__index">
-  {% assign postsInYear = site.posts | where_exp: "item", "item.hidden != true" | group_by_exp: 'post', 'post.date | date: "%Y"' %}
-  {% for year in postsInYear %}
-    <li>
-      <a href="#{{ year.name }}">
-        <strong>{{ year.name }}</strong> <span class="taxonomy__count">{{ year.items | size }}</span>
-      </a>
-    </li>
-  {% endfor %}
-</ul>
-
+{% assign postsInYear = site.posts | where_exp: "item", "item.hidden != true" | group_by_exp: 'post', 'post.date | date: "%Y"' %}
 {% assign entries_layout = page.entries_layout | default: 'list' %}
-{% assign postsByYear = site.posts | where_exp: "item", "item.hidden != true" | group_by_exp: 'post', 'post.date | date: "%Y"' %}
-{% for year in postsByYear %}
+
+<nav class="taxonomy__index-wrap" aria-label="연도 바로가기">
+  <ul class="taxonomy__index">
+    {% for year in postsInYear %}
+      <li>
+        <a href="#{{ year.name }}">
+          <strong>{{ year.name }}</strong> <span class="taxonomy__count">{{ year.items | size }}</span>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</nav>
+
+{% if postsInYear.size == 1 %}
+  {% assign only_year = postsInYear.first %}
+  <p class="taxonomy__hint">
+    {{ only_year.name }}년 글 {{ only_year.items | size }}편입니다. 아래 목록을 날짜·읽 시간으로 훑어 고르세요.
+  </p>
+{% elsif postsInYear.size > 1 %}
+  <p class="taxonomy__hint">연도 칩으로 구간을 이동한 뒤, 제목과 날짜로 훑어보세요.</p>
+{% endif %}
+
+{% for year in postsInYear %}
   <section id="{{ year.name }}" class="taxonomy__section">
     <h2 class="archive__subtitle">{{ year.name }}</h2>
     <div class="entries-{{ entries_layout }}">
       {% for post in year.items %}
-        {% include archive-single.html type=entries_layout %}
+        {% include archive-single.html type=entries_layout show_excerpt=false %}
       {% endfor %}
     </div>
-    <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
   </section>
 {% endfor %}
+
+<p class="archive-back">
+  <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
+</p>
