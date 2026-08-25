@@ -27,7 +27,7 @@
     {% include page__meta.html type=include.type %}
     {% include home-excerpt.html %}
     {% if home_excerpt != "" %}
-      <p class="archive__item-excerpt archive__item-excerpt--home" itemprop="description">{{ home_excerpt | truncate: 160 }}</p>
+      <p class="archive__item-excerpt archive__item-excerpt--smart" itemprop="description">{{ home_excerpt | truncate: 160 }}</p>
     {% endif %}
   </article>
 </div>

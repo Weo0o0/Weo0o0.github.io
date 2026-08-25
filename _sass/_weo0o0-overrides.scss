@@ -257,7 +257,8 @@ html {
   }
 }
 
-.layout--home .archive__item-excerpt--home {
+.layout--home .archive__item-excerpt--home,
+.archive__item-excerpt--smart {
   margin-top: 0.35rem;
   color: var(--note-subtext);
   font-family: var(--note-font-body);
@@ -271,6 +272,114 @@ html {
   width: 100%;
   max-width: 100%;
   padding-inline-end: 0;
+}
+
+/* Archives — token rhythm (no home-hero clone): mantle band + accent mark */
+.layout--posts #main .archive,
+.layout--categories #main .archive,
+.layout--tags #main .archive {
+  float: none;
+  width: 100%;
+  max-width: 100%;
+  padding-inline-end: 0;
+}
+
+.archive-band {
+  margin: 0 0 1.5rem;
+  padding: clamp(1.25rem, 3vw, 1.75rem) clamp(1rem, 3vw, 1.5rem);
+  background-color: var(--note-mantle);
+  border: 1px solid var(--note-overlay);
+  border-radius: 8px;
+}
+
+.archive-band__title {
+  margin: 0;
+  font-family: var(--note-font-body);
+  font-size: clamp(1.5rem, 3.5vw, 1.85rem);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--note-text);
+  text-wrap: pretty;
+}
+
+.archive-band__mark {
+  width: 3rem;
+  height: 3px;
+  margin: 0.85rem 0 0;
+  background-color: var(--note-accent);
+  border-radius: 1px;
+}
+
+.layout--posts .taxonomy__index,
+.layout--categories .taxonomy__index,
+.layout--tags .taxonomy__index {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0 0 1.75rem;
+  padding: 0;
+  list-style: none;
+}
+
+.layout--posts .taxonomy__index a,
+.layout--categories .taxonomy__index a,
+.layout--tags .taxonomy__index a {
+  min-height: 2.75rem;
+  padding: 0.4rem 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--note-font-ui);
+  font-size: 0.9rem;
+  color: var(--note-text);
+  text-decoration: none;
+  background-color: var(--note-surface);
+  border: 1px solid var(--note-overlay);
+  border-radius: 6px;
+  touch-action: manipulation;
+}
+
+.layout--posts .taxonomy__index a:hover,
+.layout--posts .taxonomy__index a:focus-visible,
+.layout--categories .taxonomy__index a:hover,
+.layout--categories .taxonomy__index a:focus-visible,
+.layout--tags .taxonomy__index a:hover,
+.layout--tags .taxonomy__index a:focus-visible {
+  color: var(--note-crust);
+  background-color: var(--note-accent);
+  border-color: var(--note-accent);
+  outline: 2px solid var(--note-focus);
+  outline-offset: 2px;
+}
+
+.layout--posts .taxonomy__count,
+.layout--categories .taxonomy__count,
+.layout--tags .taxonomy__count {
+  font-variant-numeric: tabular-nums;
+  color: var(--note-subtext);
+}
+
+.layout--posts .taxonomy__index a:hover .taxonomy__count,
+.layout--posts .taxonomy__index a:focus-visible .taxonomy__count,
+.layout--categories .taxonomy__index a:hover .taxonomy__count,
+.layout--categories .taxonomy__index a:focus-visible .taxonomy__count,
+.layout--tags .taxonomy__index a:hover .taxonomy__count,
+.layout--tags .taxonomy__index a:focus-visible .taxonomy__count {
+  color: var(--note-crust);
+}
+
+.layout--posts .archive__subtitle,
+.layout--categories .archive__subtitle,
+.layout--tags .archive__subtitle {
+  margin: 0 0 1rem;
+  padding-bottom: 0.5rem;
+  font-family: var(--note-font-body);
+  font-size: clamp(1.15rem, 2.5vw, 1.35rem);
+  font-weight: 700;
+  color: var(--note-text);
+  border-bottom: 1px solid var(--note-overlay);
+  text-wrap: pretty;
 }
 
 /* Primary button — white on teal fails AA; crust on accent ≈ 6.8:1 */
