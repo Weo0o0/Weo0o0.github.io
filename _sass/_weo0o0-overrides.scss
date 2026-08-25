@@ -39,9 +39,68 @@ html {
   outline-offset: 2px;
 }
 
+/* Skip links — readable on dark skin (theme default: white bg, no color) */
+.screen-reader-shortcut:focus,
+.screen-reader-shortcut:focus-visible,
 .skip-links a:focus,
 .skip-links a:focus-visible {
+  color: var(--note-crust);
+  background-color: var(--note-accent);
   outline: 2px solid var(--note-focus);
+  outline-offset: 2px;
+  box-shadow: none;
+}
+
+/* Restore focus where theme sets outline: none */
+.greedy-nav__toggle:focus-visible,
+.search__toggle:focus-visible,
+.layout--search .search-input:focus-visible,
+.search-content .search-input:focus-visible {
+  outline: 2px solid var(--note-focus);
+  outline-offset: 2px;
+}
+
+/* Touch targets — aim 44×44 (best practice); WCAG 2.5.8 AA ≥ 24×24 */
+.greedy-nav__toggle,
+.search__toggle {
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn {
+  min-height: 2.75rem;
+  padding: 0.625rem 1.125rem;
+  font-size: 0.9rem;
+  line-height: 1.2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+}
+
+.greedy-nav .visible-links a,
+.taxonomy__index a,
+.pagination--pager,
+.back-to-top {
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  touch-action: manipulation;
+}
+
+.taxonomy__index a {
+  padding-block: 0.35rem;
+}
+
+#main,
+#site-nav,
+#footer,
+.taxonomy__section,
+[id] {
+  scroll-margin-top: 4.5rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -212,4 +271,101 @@ html {
   width: 100%;
   max-width: 100%;
   padding-inline-end: 0;
+}
+
+/* Primary button — white on teal fails AA; crust on accent ≈ 6.8:1 */
+.btn--primary {
+  color: var(--note-crust);
+  background-color: var(--note-accent);
+}
+
+.btn--primary:hover,
+.btn--primary:focus-visible {
+  color: var(--note-crust);
+  background-color: #5fd4db;
+}
+
+/* Pagination — no empty-named links; readable disabled/current states */
+.pagination ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.pagination ul li a,
+.pagination .pagination__item {
+  min-height: 2.75rem;
+  min-width: 2.75rem;
+  padding: 0.5rem 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.pagination ul li a {
+  color: var(--note-text);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.pagination ul li a:hover,
+.pagination ul li a:focus-visible {
+  color: var(--note-accent-mocha);
+}
+
+.pagination .pagination__item.current {
+  color: var(--note-crust);
+  background-color: var(--note-accent);
+  font-weight: 700;
+}
+
+.pagination .pagination__item.disabled {
+  color: var(--note-subtext);
+  opacity: 1;
+}
+
+/* Breadcrumbs — sep inside <li>; links distinguishable without color alone */
+.breadcrumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.breadcrumbs li {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.breadcrumbs a {
+  color: var(--note-accent-mocha);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  padding-inline: 0.15rem;
+}
+
+.breadcrumbs a:hover,
+.breadcrumbs a:focus-visible {
+  color: var(--note-text);
+}
+
+.breadcrumbs .sep {
+  margin-inline: 0.35rem;
+  color: var(--note-subtext);
+}
+
+.breadcrumbs .current {
+  color: var(--note-text);
+  padding-inline: 0.15rem;
 }

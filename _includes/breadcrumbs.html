@@ -12,7 +12,7 @@
   {% assign crumb_path = site.category_archive.path %}
 {% endif %}
 
-<nav class="breadcrumbs">
+<nav class="breadcrumbs" aria-label="{{ site.data.ui-text[site.locale].breadcrumb_label | default: '탐색 경로' }}">
   <ol itemscope itemtype="https://schema.org/BreadcrumbList">
     {% assign crumbs = page.url | split: '/' %}
     {% assign i = 1 %}
@@ -20,20 +20,19 @@
       {% if forloop.first %}
         <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
           <a href="{{ '/' | relative_url }}" itemprop="item"><span itemprop="name">{{ site.data.ui-text[site.locale].breadcrumb_home_label | default: "Home" }}</span></a>
-
           <meta itemprop="position" content="{{ i }}" />
+          {% unless forloop.last %}<span class="sep" aria-hidden="true">{{ site.data.ui-text[site.locale].breadcrumb_separator | default: "/" }}</span>{% endunless %}
         </li>
-        <span class="sep">{{ site.data.ui-text[site.locale].breadcrumb_separator | default: "/" }}</span>
       {% endif %}
       {% if forloop.last %}
-        <li class="current"{% if page.locale %} lang="{{ page.locale }}"{% endif %}>{{ page.title }}</li>
+        <li class="current"{% if page.locale %} lang="{{ page.locale }}"{% endif %} aria-current="page">{{ page.title }}</li>
       {% else %}
         {% assign i = i | plus: 1 %}
         <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
           <a href="{{ crumb | downcase | replace: '%20', '-' | prepend: path_type | prepend: crumb_path | relative_url }}" itemprop="item"><span itemprop="name">{{ crumb | url_decode | replace: '-', ' ' | capitalize }}</span></a>
           <meta itemprop="position" content="{{ i }}" />
+          <span class="sep" aria-hidden="true">{{ site.data.ui-text[site.locale].breadcrumb_separator | default: "/" }}</span>
         </li>
-        <span class="sep">{{ site.data.ui-text[site.locale].breadcrumb_separator | default: "/" }}</span>
       {% endif %}
     {% endfor %}
   </ol>
