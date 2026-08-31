@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weo0o0-Note · Web3 디자인 시안 5종</title>
+  <style>
+    :root {
+      --base: #1e1e2e;
+      --mantle: #181825;
+      --text: #cdd6f4;
+      --sub: #a6adc8;
+      --accent: #00adb5;
+      --border: #45475a;
+      --surface: #313244;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Pretendard", system-ui, sans-serif;
+      background: var(--base);
+      color: var(--text);
+      line-height: 1.55;
+      font-size: 16px;
+    }
+    main { max-width: 52rem; margin: 0 auto; padding: 1.5rem 1rem 3rem; }
+    h1 { font-size: clamp(1.5rem, 4vw, 1.85rem); margin: 0 0 0.5rem; }
+    h2 { font-size: 1.2rem; margin: 2rem 0 0.75rem; border-bottom: 1px solid var(--border); padding-bottom: 0.35rem; }
+    h3 { font-size: 1.05rem; margin: 0 0 0.35rem; color: var(--accent); }
+    p, li { color: var(--sub); }
+    .lead { color: var(--sub); margin: 0 0 1.5rem; }
+    .stats { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0 1.5rem; }
+    .stat { background: var(--mantle); border: 1px solid var(--border); border-radius: 8px; padding: 0.65rem 1rem; min-width: 7rem; }
+    .stat strong { display: block; font-size: 1.25rem; color: var(--text); }
+    .stat span { font-size: 0.8rem; color: var(--sub); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; margin: 0.75rem 0; }
+    th, td { border: 1px solid var(--border); padding: 0.5rem 0.65rem; text-align: left; }
+    th { background: var(--mantle); color: var(--text); }
+    .proposal {
+      background: var(--mantle);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.1rem;
+      margin: 0.85rem 0;
+    }
+    .proposal.recommended { border-left: 3px solid var(--accent); }
+    .badge { display: inline-block; font-size: 0.75rem; padding: 0.15rem 0.5rem; border-radius: 4px; background: var(--surface); color: var(--accent); margin-left: 0.35rem; }
+    .wire { display: grid; gap: 4px; margin: 0.65rem 0; }
+    .wire div { border: 1px solid var(--border); padding: 0.45rem 0.6rem; font-size: 0.8rem; color: var(--sub); }
+    .wire div.em { border-left: 3px solid var(--accent); background: var(--surface); color: var(--text); }
+    .chart-row { display: flex; align-items: center; gap: 0.5rem; margin: 0.35rem 0; font-size: 0.85rem; }
+    .bar { height: 10px; background: var(--accent); border-radius: 2px; min-width: 4px; }
+    .note { font-size: 0.85rem; color: var(--sub); margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Weo0o0-Note · Web3 디자인 시안 5종</h1>
+    <p class="lead">Jekyll 유지 · Catppuccin Mocha + teal #00adb5 · 실제 글 17편(_posts/) 기준 · Canvas 대체 정적 미리보기</p>
+
+    <div class="stats">
+      <div class="stat"><strong>17</strong><span>총 글</span></div>
+      <div class="stat"><strong>9</strong><span>카테고리</span></div>
+      <div class="stat"><strong>이론 11</strong><span>주력 태그</span></div>
+      <div class="stat"><strong>2024</strong><span>발행 연도</span></div>
+    </div>
+
+    <h2>실데이터 (차트 대용)</h2>
+    <p>월별 발행: 3월 2 · 6월 13 · 7월 2</p>
+    <div class="chart-row"><span style="width:2.5rem">3월</span><div class="bar" style="width:12%"></div> 2</div>
+    <div class="chart-row"><span style="width:2.5rem">6월</span><div class="bar" style="width:78%"></div> 13</div>
+    <div class="chart-row"><span style="width:2.5rem">7월</span><div class="bar" style="width:12%"></div> 2</div>
+    <p style="margin-top:1rem">카테고리: SQLi 5 · coding 2 · bee-box 2 · etc 2 · 기타 6</p>
+    <p>상위 태그: 이론 11 · SQLi 5 · sqlmap 4 · 옵션 4 · 권한 2 · python 2</p>
+
+    <h2>블로그 기능 인벤토리</h2>
+    <table>
+      <thead><tr><th>기능</th><th>상태</th><th>위치</th></tr></thead>
+      <tbody>
+        <tr><td>홈 hero + 최신 글 + 페이지네이션</td><td>운영 중</td><td>index.html</td></tr>
+        <tr><td>연도 / 카테고리 / 태그 아카이브</td><td>P1 반영</td><td>compact · sticky</td></tr>
+        <tr><td>검색</td><td>페이지만 · config off</td><td>search: true 필요</td></tr>
+        <tr><td>글 TOC · 읽기시간 · Disqus</td><td>운영</td><td>single.html</td></tr>
+        <tr><td>notice · breadcrumb · 404</td><td>운영</td><td>includes</td></tr>
+      </tbody>
+    </table>
+
+    <h2>시안 5종</h2>
+
+    <article class="proposal recommended">
+      <h3>1. Signal Console <span class="badge">Web3 v1 · 권장</span></h3>
+      <p>glass 3단 + teal signal bar. 홈에 월별 mini chart 1개, 나머지 읽기 우선.</p>
+      <div class="wire">
+        <div class="em">Glass Nav + signal bar</div>
+        <div class="em">Hero + mini chart</div>
+        <div>Recent compact list</div>
+      </div>
+      <p><strong>다음 시공:</strong> masthead glass → hero → post (P0)</p>
+    </article>
+
+    <article class="proposal">
+      <h3>2. Editorial Vault <span class="badge">읽기 우선</span></h3>
+      <p>glass 최소, Batang 대형 타이포. 차트는 아카이브 Pie만.</p>
+    </article>
+
+    <article class="proposal">
+      <h3>3. Ops Dashboard <span class="badge">홈=대시보드</span></h3>
+      <p>홈 Stat + Bar/Pie 2열. search 활성화와 궁합 좋음.</p>
+    </article>
+
+    <article class="proposal">
+      <h3>4. Taxonomy Atlas <span class="badge">분류 지도</span></h3>
+      <p>sticky chip atlas를 브랜드 중심. 태그 Pie on home.</p>
+    </article>
+
+    <article class="proposal">
+      <h3>5. Night Terminal <span class="badge">터미널 랩</span></h3>
+      <p>mono UI + horizontal bar. P2 실험, 요소만 Signal Console에 흡수.</p>
+    </article>
+
+    <p class="note">
+      Canvas(.canvas.tsx)는 Cursor <strong>데스크톱 IDE</strong> 채팅 옆 패널 전용입니다.
+      Cloud Agent / 모바일 웹에서는 이 HTML 또는 GitHub의 <code>canvases/weo0o0-web3-design-proposals.canvas.tsx</code> 소스로 확인하세요.
+    </p>
+  </main>
+</body>
+</html>
