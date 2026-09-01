@@ -46,13 +46,13 @@
   {% if posts_by_month.size > 0 %}
   <div class="home-hero__activity">
     <p class="home-hero__activity-label" id="home-hero-chart-caption">월별 발행</p>
-    <div class="home-hero__chart" role="img" aria-labelledby="home-hero-chart-caption">
+    <div class="home-hero__chart">
       {% for bucket in posts_by_month reversed %}
         {% assign n = bucket.items | size %}
         {% assign pct = n | times: 100 | divided_by: month_max %}
         {% if pct < 8 %}{% assign pct = 8 %}{% endif %}
         <div class="home-hero__bar-col">
-          <div class="home-hero__bar-track">
+          <div class="home-hero__bar-track" aria-hidden="true">
             <span class="home-hero__bar" style="height: {{ pct }}%;"></span>
           </div>
           <span class="home-hero__bar-label">{{ bucket.name | slice: 5, 2 }}월 {{ n }}</span>
