@@ -1,13 +1,13 @@
 {% assign current_url = include.current_url | default: page.url %}
 
 <header class="masthead">
-  <div class="masthead__inner-wrap">
+  <div class="masthead__inner-wrap note-hud note-hud--nav">
+    {% include note-hud-corners.html %}
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav" aria-label="{{ site.title }}">
         <a class="site-title" href="{{ '/' | relative_url }}">
           <span class="site-title__mark" aria-hidden="true"></span>
           <span class="site-title__text">{{ site.masthead_title | default: site.title }}</span>
-          {% if site.subtitle %}<span class="site-subtitle">{{ site.subtitle }}</span>{% endif %}
         </a>
         <ul class="visible-links">
           {%- for link in site.data.navigation.main -%}

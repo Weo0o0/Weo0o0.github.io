@@ -24,24 +24,26 @@
   {% endif %}
 {% endfor %}
 
-<section class="home-hero" aria-labelledby="home-hero-headline">
-  <p class="home-hero__brand">{{ site.title }}</p>
-  <h1 id="home-hero-headline" class="home-hero__headline">{{ headline }}</h1>
-  <div class="home-hero__mark" aria-hidden="true"></div>
-  <p class="home-hero__support">{{ support }}</p>
+<section class="home-hero note-hud" aria-labelledby="home-hero-headline">
+  {% include note-hud-corners.html %}
 
-  <dl class="home-hero__stats">
-    <div class="home-hero__stat">
-      <dt>글</dt>
-      <dd>{{ site.posts | size }}편</dd>
-    </div>
-    {% if top_cat != "" %}
-    <div class="home-hero__stat">
-      <dt>주력</dt>
-      <dd>{{ top_cat }} {{ top_n }}</dd>
-    </div>
+  <div class="home-hero__status">
+    <p class="home-hero__live">
+      <span class="home-hero__live-dot" aria-hidden="true"></span>
+      LIVE
+    </p>
+    <p class="home-hero__status-meta">
+      {{ site.posts | size }} notes{% if top_cat != "" %} · {{ top_cat }} {{ top_n }}{% endif %}
+    </p>
+    {% if latest_post %}
+      <p class="home-hero__status-time">
+        <time datetime="{{ latest_post.date | date_to_xmlschema }}">{{ latest_post.date | date: "%Y-%m-%d" }}</time>
+      </p>
     {% endif %}
-  </dl>
+  </div>
+
+  <h1 id="home-hero-headline" class="home-hero__headline">{{ headline }}</h1>
+  <p class="home-hero__support">{{ support }}</p>
 
   {% if posts_by_month.size > 0 %}
   <div class="home-hero__activity">
