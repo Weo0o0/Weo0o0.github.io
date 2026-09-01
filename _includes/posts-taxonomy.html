@@ -5,21 +5,29 @@
   {% endif %}
 {% endfor %}
 
-<ul class="taxonomy__index">
-  {% for i in (1..items_max) reversed %}
-    {% for item in include.taxonomies %}
-      {% if item[1].size == i %}
-        <li>
-          <a href="#{{ item[0] | slugify }}">
-            <strong>{{ item[0] }}</strong> <span class="taxonomy__count">{{ i }}</span>
-          </a>
-        </li>
-      {% endif %}
-    {% endfor %}
-  {% endfor %}
-</ul>
-
 {% assign entries_layout = page.entries_layout | default: 'list' %}
+{% assign show_excerpt = include.show_excerpt | default: false %}
+
+<nav class="taxonomy__index-wrap" aria-label="{{ include.index_label | default: '분류 바로가기' }}">
+  <ul class="taxonomy__index">
+    {% for i in (1..items_max) reversed %}
+      {% for item in include.taxonomies %}
+        {% if item[1].size == i %}
+          <li>
+            <a href="#{{ item[0] | slugify }}">
+              <strong>{{ item[0] }}</strong> <span class="taxonomy__count">{{ i }}</span>
+            </a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+  </ul>
+</nav>
+
+{% if include.hint %}
+  <p class="taxonomy__hint">{{ include.hint }}</p>
+{% endif %}
+
 {% for i in (1..items_max) reversed %}
   {% for taxonomy in include.taxonomies %}
     {% if taxonomy[1].size == i %}
@@ -27,11 +35,14 @@
         <h2 class="archive__subtitle">{{ taxonomy[0] }}</h2>
         <div class="entries-{{ entries_layout }}">
           {% for post in taxonomy.last %}
-            {% include archive-single.html type=entries_layout %}
+            {% include archive-single.html type=entries_layout show_excerpt=show_excerpt %}
           {% endfor %}
         </div>
-        <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
       </section>
     {% endif %}
   {% endfor %}
 {% endfor %}
+
+<p class="archive-back">
+  <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
+</p>

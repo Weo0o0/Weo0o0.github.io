@@ -1,21 +1,24 @@
-{% capture logo_path %}{{ site.logo }}{% endcapture %}
+{% assign current_url = include.current_url | default: page.url %}
 
-<div class="masthead">
-  <div class="masthead__inner-wrap">
+<header class="masthead">
+  <div class="masthead__inner-wrap note-hud note-hud--nav">
+    {% include note-hud-corners.html %}
     <div class="masthead__menu">
-      <nav id="site-nav" class="greedy-nav">
-        {% unless logo_path == empty %}
-          <a class="site-logo" href="{{ '/' | relative_url }}"><img src="{{ logo_path | relative_url }}" alt="{{ site.masthead_title | default: site.title }}" width="32" height="32"></a>
-        {% endunless %}
+      <nav id="site-nav" class="greedy-nav" aria-label="{{ site.title }}">
         <a class="site-title" href="{{ '/' | relative_url }}">
-          {{ site.masthead_title | default: site.title }}
-          {% if site.subtitle %}<span class="site-subtitle">{{ site.subtitle }}</span>{% endif %}
+          <span class="site-title__mark" aria-hidden="true"></span>
+          <span class="site-title__text">{{ site.masthead_title | default: site.title }}</span>
         </a>
         <ul class="visible-links">
           {%- for link in site.data.navigation.main -%}
+            {% assign is_current = false %}
+            {% if current_url == link.url %}
+              {% assign is_current = true %}
+            {% endif %}
             <li class="masthead__menu-item">
               <a
                 href="{{ link.url | relative_url }}"
+                {% if is_current %}aria-current="page"{% endif %}
                 {% if link.description %} title="{{ link.description }}"{% endif %}
                 {% if link.target %} target="{{ link.target }}"{% endif %}
               >{{ link.title }}</a>
@@ -36,4 +39,4 @@
       </nav>
     </div>
   </div>
-</div>
+</header>

@@ -18,11 +18,14 @@ layout: default
   {% include sidebar.html %}
 
   <div class="archive">
+    {% unless page.layout == "home" %}
     {% unless page.header.overlay_color or page.header.overlay_image %}
-      <header class="archive-band">
+      <header class="archive-band note-hud">
+        {% include note-hud-corners.html %}
         <h1 id="page-title" class="page__title archive-band__title"{% if page.locale %} lang="{{ page.locale }}"{% endif %}>{{ page.title }}</h1>
         <div class="archive-band__mark" aria-hidden="true"></div>
       </header>
+    {% endunless %}
     {% endunless %}
     {{ content }}
   </div>
