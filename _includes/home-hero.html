@@ -5,11 +5,63 @@
 {% assign cta_secondary = page.hero.cta_secondary | default: "아카이브 둘러보기" %}
 {% assign archive_url = page.hero.archive_url | default: "/year-archive/" %}
 
+{% assign top_cat = "" %}
+{% assign top_n = 0 %}
+{% for cat in site.categories %}
+  {% assign cat_size = cat[1] | size %}
+  {% if cat_size > top_n %}
+    {% assign top_n = cat_size %}
+    {% assign top_cat = cat[0] %}
+  {% endif %}
+{% endfor %}
+
+{% assign posts_by_month = site.posts | group_by_exp: "post", "post.date | date: '%Y-%m'" %}
+{% assign month_max = 1 %}
+{% for bucket in posts_by_month %}
+  {% assign bucket_size = bucket.items | size %}
+  {% if bucket_size > month_max %}
+    {% assign month_max = bucket_size %}
+  {% endif %}
+{% endfor %}
+
 <section class="home-hero" aria-labelledby="home-hero-headline">
   <p class="home-hero__brand">{{ site.title }}</p>
   <h1 id="home-hero-headline" class="home-hero__headline">{{ headline }}</h1>
   <div class="home-hero__mark" aria-hidden="true"></div>
   <p class="home-hero__support">{{ support }}</p>
+
+  <dl class="home-hero__stats">
+    <div class="home-hero__stat">
+      <dt>글</dt>
+      <dd>{{ site.posts | size }}편</dd>
+    </div>
+    {% if top_cat != "" %}
+    <div class="home-hero__stat">
+      <dt>주력</dt>
+      <dd>{{ top_cat }} {{ top_n }}</dd>
+    </div>
+    {% endif %}
+  </dl>
+
+  {% if posts_by_month.size > 0 %}
+  <div class="home-hero__activity">
+    <p class="home-hero__activity-label" id="home-hero-chart-caption">월별 발행</p>
+    <div class="home-hero__chart" role="img" aria-labelledby="home-hero-chart-caption">
+      {% for bucket in posts_by_month reversed %}
+        {% assign n = bucket.items | size %}
+        {% assign pct = n | times: 100 | divided_by: month_max %}
+        {% if pct < 8 %}{% assign pct = 8 %}{% endif %}
+        <div class="home-hero__bar-col">
+          <div class="home-hero__bar-track">
+            <span class="home-hero__bar" style="height: {{ pct }}%;"></span>
+          </div>
+          <span class="home-hero__bar-label">{{ bucket.name | slice: 5, 2 }}월 {{ n }}</span>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
   <div class="home-hero__actions">
     {% if latest_post %}
       <a
