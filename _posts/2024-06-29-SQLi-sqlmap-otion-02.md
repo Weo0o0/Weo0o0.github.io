@@ -1,8 +1,8 @@
 ---
-layout: single
+layout: post
 title:  "SQLi-sqlma 옵션 리스트 02"
 categories: SQLi
-tag: [SQLi, sqlmap, 이론, 옵션]
+tags: [SQLi, sqlmap, 이론, 옵션]
 toc: true
 ---
 

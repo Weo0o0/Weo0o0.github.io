@@ -1,8 +1,8 @@
 ---
-layout: single
+layout: post
 title: "소셜 엔지니어링 Storm-Beaker"
 categories: social-engineering
-tag: [실습, 소셜 엔지니어링, 정보 수집]
+tags: [실습, 소셜 엔지니어링, 정보 수집]
 toc: true
 ---
 **[공지사항]** [본 블로그에 포함된 모든 정보는 교육 목적으로만 제공됩니다.](https://weo0o0.github.io/notice/notice/)

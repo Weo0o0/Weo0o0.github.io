@@ -1,8 +1,8 @@
 ---
-layout: single
+layout: post
 title:  "SQLi란?"
 categories: SQLi
-tag: [SQLi, 이론, 옵션]
+tags: [SQLi, 이론, 옵션]
 toc: true
 ---
 
