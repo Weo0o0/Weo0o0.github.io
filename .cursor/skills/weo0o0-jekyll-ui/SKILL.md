@@ -25,6 +25,8 @@ This site is **Jekyll + jekyll-theme-chirpy (gem, 7.6.x) + Liquid + plain CSS/JS
 | --- | --- |
 | Tokens, fonts, glass, notices, motion styles | [`assets/css/weo0o0.css`](../../../assets/css/weo0o0.css) |
 | Spotlight + scroll reveal behavior | [`assets/js/weo0o0-motion.js`](../../../assets/js/weo0o0-motion.js) |
+| Day/night toggle behavior (circle reveal, labels, theme-color) | [`assets/js/weo0o0-theme.js`](../../../assets/js/weo0o0-theme.js) |
+| Day/night toggle button markup | [`_includes/topbar.html`](../../../_includes/topbar.html) (copy of Chirpy 7.6.0; re-copy on upgrade) |
 | Head meta, fonts, loading our CSS/JS | [`_includes/metadata-hook.html`](../../../_includes/metadata-hook.html) |
 | Sidebar tabs | [`_tabs/`](../../../_tabs/) (`order`, `icon`) |
 | Sidebar contact icons / share buttons | [`_data/contact.yml`](../../../_data/contact.yml), [`_data/share.yml`](../../../_data/share.yml) |
@@ -32,12 +34,13 @@ This site is **Jekyll + jekyll-theme-chirpy (gem, 7.6.x) + Liquid + plain CSS/JS
 
 Chirpy files live in the gem (`bundle info --path jekyll-theme-chirpy`). A file with the same path in this repo replaces the theme's copy, so only override a Chirpy layout or include when CSS cannot do the job, and copy it from the installed gem version.
 
-Chirpy's dark tokens are applied on `:root[data-bs-theme='dark']`; override them there, in `weo0o0.css`.
+Chirpy applies theme tokens on `:root[data-bs-theme='dark']` and `:root[data-bs-theme='light']`; override both there, in `weo0o0.css`. Switch themes only through Chirpy's `Theme.update()` so Disqus and other listeners get the `theme-updated` message.
 
 ## Invariants
 
 - Post URLs stay `/:categories/:title/` (set in `_config.yml` defaults). Posts link to each other with this shape.
-- `theme_mode: dark`. Surfaces are Catppuccin Mocha (`#1e1e2e` base, `#cdd6f4` text); brand accent stays teal `#00adb5`.
+- `theme_mode` stays empty so the day/night toggle works; a first visit starts on night (`metadata-hook.html`), and the choice is stored in `localStorage.theme`.
+- Palette follows dhaatrik.github.io: night `#0b0e14` base / `#f3f4f6` text / `#3b82f6` accent, day `#f8fafc` base / `#0f172a` text / `#2563eb` accent, cyan + purple glows, dotted grid. Keep light-mode text and notices at WCAG AA.
 - Gowun Batang for reading text and headings, Gowun Dodum for UI, Pretendard fallback.
 - Motion (ambient gradient, pointer spotlight, glass hover lift, card reveal) must stop under `prefers-reduced-motion`, and cards must never stay hidden if JS fails.
 - Old posts use Minimal Mistakes markup (`{: .notice--danger}`, `.btn--success`, `{% include video %}`); keep the compatibility styles and `_includes/video` instead of rewriting post bodies.
@@ -45,7 +48,7 @@ Chirpy's dark tokens are applied on `:root[data-bs-theme='dark']`; override them
 ## Git repos mapped to this project
 
 - https://github.com/cotes2020/jekyll-theme-chirpy — theme source; match the gem version before copying any file.
-- https://github.com/catppuccin/catppuccin — Mocha palette.
+- https://github.com/dhaatrik/dhaatrik.github.io — palette (`src/styles/global.css`) and the sun/moon toggle (`src/components/ThemeToggle.astro`) this site adapts.
 - https://github.com/yangheeryu/Gowun-Batang, https://github.com/yangheeryu/Gowun-Dodum — type.
 - https://github.com/orioncactus/pretendard — UI fallback via jsDelivr.
 
