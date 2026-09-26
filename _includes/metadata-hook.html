@@ -15,6 +15,13 @@
 <link rel="stylesheet" href="{{ '/assets/css/weo0o0.css' | relative_url }}">
 
 <script>
+  /* Runs after Chirpy's theme.min.js and before first paint: first visit starts on the night theme. */
+  if (window.Theme && Theme.isToggleable && !localStorage.getItem('theme')) {
+    Theme.update(Theme.Mode.DARK);
+  }
+</script>
+
+<script>
   (function () {
     var root = document.documentElement;
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -27,3 +34,4 @@
   })();
 </script>
 <script defer src="{{ '/assets/js/weo0o0-motion.js' | relative_url }}"></script>
+<script defer src="{{ '/assets/js/weo0o0-theme.js' | relative_url }}"></script>

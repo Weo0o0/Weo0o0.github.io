@@ -1,68 +1,121 @@
 /*
   Weo0o0-Note layer on top of Chirpy.
-  Palette: Catppuccin Mocha surfaces + brand teal #00adb5.
+  Palette: dhaatrik.github.io day/night tokens (ink #0b0e14 / slate #f8fafc, blue accent,
+  cyan + purple neon glows, dotted blueprint grid).
   Type: Gowun Batang (reading) / Gowun Dodum (UI) with Pretendard fallback.
 */
 
 :root[data-bs-theme='dark'] {
-  --wn-base: #1e1e2e;
-  --wn-mantle: #181825;
-  --wn-crust: #11111b;
-  --wn-surface0: #313244;
-  --wn-surface1: #45475a;
-  --wn-overlay: #6c7086;
-  --wn-subtext: #a6adc8;
-  --wn-text: #cdd6f4;
-  --wn-teal: #00adb5;
-  --wn-mauve: #cba6f7;
-  --wn-glass: rgb(30 30 46 / 55%);
-  --wn-glass-strong: rgb(24 24 37 / 72%);
-  --wn-glass-border: rgb(205 214 244 / 8%);
+  --wn-bg: #0b0e14;
+  --wn-card: #151a22;
+  --wn-card-hover: #1e2530;
+  --wn-text: #f3f4f6;
+  --wn-text-muted: #9ca3af;
+  --wn-heading: #f9fafb;
+  --wn-accent: #3b82f6;
+  --wn-accent-rgb: 59 130 246;
+  --wn-glass-rgb: 11 14 20;
+  --wn-line-rgb: 255 255 255;
+  --wn-glow-1-rgb: 6 182 212;
+  --wn-glow-2-rgb: 139 92 246;
+  --wn-glow-alpha: 11%;
+  --wn-spot-alpha: 15%;
+  --wn-grid-dot: rgb(255 255 255 / 7%);
+  --wn-glass-alpha: 62%;
+  --wn-card-shadow: 0 10px 30px -18px rgb(0 0 0 / 80%);
+
+  --wn-notice-default: #9ca3af;
+  --wn-notice-primary: #60a5fa;
+  --wn-notice-info: #22d3ee;
+  --wn-notice-warning: #fbbf24;
+  --wn-notice-success: #34d399;
+  --wn-notice-danger: #f87171;
+  --wn-btn-success-bg: #34d399;
+  --wn-btn-success-hover: #2cc28a;
+  --wn-btn-success-text: #0b0e14;
+
+  --highlight-bg-color: #10141c;
+  --inline-code-bg: rgb(255 255 255 / 7%);
+  --code-color: #c9d1d9;
+}
+
+:root[data-bs-theme='light'] {
+  --wn-bg: #f8fafc;
+  --wn-card: #ffffff;
+  --wn-card-hover: #f1f5f9;
+  --wn-text: #0f172a;
+  --wn-text-muted: #64748b;
+  --wn-heading: #0b1222;
+  --wn-accent: #2563eb;
+  --wn-accent-rgb: 37 99 235;
+  --wn-glass-rgb: 255 255 255;
+  --wn-line-rgb: 15 23 42;
+  --wn-glow-1-rgb: 6 182 212;
+  --wn-glow-2-rgb: 139 92 246;
+  --wn-glow-alpha: 9%;
+  --wn-spot-alpha: 7%;
+  --wn-grid-dot: rgb(15 23 42 / 9%);
+  --wn-glass-alpha: 72%;
+  --wn-card-shadow: 0 10px 28px -20px rgb(15 23 42 / 35%);
+
+  --wn-notice-default: #64748b;
+  --wn-notice-primary: #2563eb;
+  --wn-notice-info: #0891b2;
+  --wn-notice-warning: #b45309;
+  --wn-notice-success: #047857;
+  --wn-notice-danger: #dc2626;
+  --wn-btn-success-bg: #047857;
+  --wn-btn-success-hover: #065f46;
+  --wn-btn-success-text: #ffffff;
+}
+
+:root[data-bs-theme] {
+  --wn-glass: rgb(var(--wn-glass-rgb) / var(--wn-glass-alpha));
+  --wn-glass-strong: rgb(var(--wn-glass-rgb) / calc(var(--wn-glass-alpha) + 14%));
+  --wn-glass-border: rgb(var(--wn-line-rgb) / 8%);
+  --wn-line: rgb(var(--wn-line-rgb) / 12%);
   --wn-ease: cubic-bezier(0.16, 1, 0.3, 1);
 
-  --main-bg: var(--wn-base);
-  --main-border-color: var(--wn-surface0);
+  --main-bg: var(--wn-bg);
+  --main-border-color: var(--wn-line);
   --text-color: var(--wn-text);
-  --text-muted-color: var(--wn-subtext);
-  --text-muted-highlight-color: #bac2de;
-  --heading-color: #e4e8fa;
-  --label-color: var(--wn-subtext);
-  --link-color: var(--wn-teal);
-  --link-underline-color: rgb(0 173 181 / 45%);
-  --blockquote-border-color: var(--wn-surface1);
-  --blockquote-text-color: var(--wn-subtext);
-  --button-bg: var(--wn-surface0);
-  --btn-border-color: var(--wn-surface1);
+  --text-muted-color: var(--wn-text-muted);
+  --text-muted-highlight-color: var(--wn-text);
+  --heading-color: var(--wn-heading);
+  --label-color: var(--wn-text-muted);
+  --link-color: var(--wn-accent);
+  --link-underline-color: rgb(var(--wn-accent-rgb) / 45%);
+  --blockquote-border-color: var(--wn-line);
+  --blockquote-text-color: var(--wn-text-muted);
+  --button-bg: var(--wn-card);
+  --btn-border-color: var(--wn-line);
   --card-bg: var(--wn-glass);
-  --card-header-bg: var(--wn-surface0);
-  --card-hover-bg: var(--wn-surface1);
-  --menu-bg: var(--wn-mantle);
-  --site-title-color: var(--wn-text);
-  --site-subtitle-color: var(--wn-subtext);
+  --card-header-bg: var(--wn-card-hover);
+  --card-hover-bg: var(--wn-card-hover);
+  --menu-bg: var(--wn-card);
+  --site-title-color: var(--wn-heading);
+  --site-subtitle-color: var(--wn-text-muted);
   --sidebar-bg: var(--wn-glass-strong);
   --sidebar-border-color: var(--wn-glass-border);
-  --sidebar-muted-color: var(--wn-subtext);
-  --sidebar-active-color: #f5f7ff;
-  --sidebar-hover-bg: rgb(69 71 90 / 45%);
-  --sidebar-btn-bg: var(--wn-surface0);
-  --sidebar-btn-color: var(--wn-subtext);
-  --topbar-bg: rgb(30 30 46 / 62%);
-  --search-border-color: var(--wn-surface1);
-  --search-icon-color: var(--wn-overlay);
-  --input-focus-border-color: var(--wn-teal);
-  --post-list-text-color: var(--wn-subtext);
-  --btn-paginator-hover-color: var(--wn-surface0);
-  --toc-highlight: var(--wn-teal);
-  --tag-hover: rgb(0 173 181 / 18%);
-  --tag-border: var(--wn-surface1);
-  --highlight-bg-color: var(--wn-mantle);
-  --inline-code-bg: rgb(205 214 244 / 7%);
-  --code-color: #bac2de;
-  --timeline-color: var(--wn-surface1);
-  --timeline-node-bg: var(--wn-overlay);
-  --categories-border: rgb(69 71 90 / 60%);
-  --categories-hover-bg: var(--wn-surface0);
-  --footnote-target-bg: rgb(0 173 181 / 30%);
+  --sidebar-muted-color: var(--wn-text-muted);
+  --sidebar-active-color: var(--wn-heading);
+  --sidebar-hover-bg: rgb(var(--wn-line-rgb) / 6%);
+  --sidebar-btn-bg: var(--wn-card);
+  --sidebar-btn-color: var(--wn-text-muted);
+  --topbar-bg: rgb(var(--wn-glass-rgb) / 60%);
+  --search-border-color: var(--wn-line);
+  --search-icon-color: var(--wn-text-muted);
+  --input-focus-border-color: var(--wn-accent);
+  --post-list-text-color: var(--wn-text-muted);
+  --btn-paginator-hover-color: var(--wn-card-hover);
+  --toc-highlight: var(--wn-accent);
+  --tag-hover: rgb(var(--wn-accent-rgb) / 16%);
+  --tag-border: var(--wn-line);
+  --timeline-color: var(--wn-line);
+  --timeline-node-bg: var(--wn-text-muted);
+  --categories-border: var(--wn-line);
+  --categories-hover-bg: var(--wn-card-hover);
+  --footnote-target-bg: rgb(var(--wn-accent-rgb) / 25%);
 }
 
 /* ---------- Type ---------- */
@@ -89,11 +142,16 @@ h6,
 }
 
 :focus-visible {
-  outline: 2px solid var(--wn-teal);
+  outline: 2px solid var(--wn-accent);
   outline-offset: 2px;
 }
 
-/* ---------- Ambient background + spotlight ---------- */
+/* ---------- Dotted grid, ambient glow, spotlight ---------- */
+
+body {
+  background-image: radial-gradient(circle, var(--wn-grid-dot) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
 
 body::before,
 body::after {
@@ -106,9 +164,9 @@ body::after {
 body::before {
   inset: -25%;
   background:
-    radial-gradient(38% 32% at 22% 18%, rgb(0 173 181 / 13%), transparent 70%),
-    radial-gradient(34% 30% at 82% 72%, rgb(203 166 247 / 9%), transparent 70%),
-    radial-gradient(30% 26% at 60% 12%, rgb(137 180 250 / 6%), transparent 70%);
+    radial-gradient(38% 32% at 22% 18%, rgb(var(--wn-glow-1-rgb) / var(--wn-glow-alpha)), transparent 70%),
+    radial-gradient(34% 30% at 82% 72%, rgb(var(--wn-glow-2-rgb) / var(--wn-glow-alpha)), transparent 70%),
+    radial-gradient(30% 26% at 60% 12%, rgb(var(--wn-accent-rgb) / calc(var(--wn-glow-alpha) * 0.6)), transparent 70%);
   animation: wn-drift 48s ease-in-out infinite alternate;
   will-change: transform;
 }
@@ -118,8 +176,8 @@ body::after {
   opacity: 0;
   background: radial-gradient(
     420px circle at var(--wn-x, 50%) var(--wn-y, 50%),
-    rgb(0 173 181 / 10%),
-    transparent 65%
+    rgb(var(--wn-accent-rgb) / var(--wn-spot-alpha)),
+    transparent 70%
   );
   transition: opacity 0.4s ease;
 }
@@ -165,7 +223,7 @@ footer {
   border-radius: 14px;
   -webkit-backdrop-filter: blur(10px) saturate(130%);
   backdrop-filter: blur(10px) saturate(130%);
-  box-shadow: 0 1px 0 rgb(255 255 255 / 3%) inset, 0 10px 30px -18px rgb(0 0 0 / 70%);
+  box-shadow: 0 1px 0 rgb(255 255 255 / 3%) inset, var(--wn-card-shadow);
   transition:
     transform 0.35s var(--wn-ease),
     border-color 0.35s ease,
@@ -175,13 +233,107 @@ footer {
 #post-list .card-wrapper.card:hover,
 #post-list .card-wrapper.card:focus-within {
   transform: translateY(-3px);
-  border-color: rgb(0 173 181 / 35%);
-  box-shadow: 0 1px 0 rgb(255 255 255 / 4%) inset, 0 18px 40px -20px rgb(0 173 181 / 35%);
+  border-color: rgb(var(--wn-accent-rgb) / 40%);
+  box-shadow: 0 1px 0 rgb(255 255 255 / 4%) inset, 0 18px 40px -20px rgb(var(--wn-accent-rgb) / 40%);
 }
 
 #post-list .card-wrapper.card > a:focus-visible {
   outline-offset: -2px;
   border-radius: 14px;
+}
+
+/* ---------- Day / night toggle ---------- */
+
+/* The sidebar's light/dark/system menu is replaced by #wn-theme-toggle in the top bar. */
+#sidebar .sidebar-bottom .btn-group.dropup,
+#sidebar .sidebar-bottom .btn-group.dropup + .icon-border {
+  display: none;
+}
+
+#wn-theme-toggle {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  margin-left: 0.5rem;
+  padding: 0;
+  border-radius: 999px;
+  color: var(--wn-text-muted);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    transform 0.15s ease;
+}
+
+#wn-theme-toggle:hover {
+  background-color: rgb(var(--wn-line-rgb) / 8%);
+  color: var(--wn-heading);
+}
+
+#wn-theme-toggle:active {
+  transform: scale(0.95);
+}
+
+.wn-theme-icon {
+  position: absolute;
+  width: 1.25rem;
+  height: 1.25rem;
+  transition:
+    transform 0.5s var(--wn-ease),
+    opacity 0.5s ease;
+}
+
+/* Night shows the sun (switch to day); day shows the moon. */
+:root[data-bs-theme='dark'] .wn-theme-icon--moon,
+:root[data-bs-theme='light'] .wn-theme-icon--sun {
+  opacity: 0;
+}
+
+:root[data-bs-theme='dark'] .wn-theme-icon--moon {
+  transform: scale(0) rotate(90deg);
+}
+
+:root[data-bs-theme='light'] .wn-theme-icon--sun {
+  transform: scale(0) rotate(-90deg);
+}
+
+/* Keep the search box beside the toggle instead of centered by space-between.
+   #search carries Bootstrap's `ms-lg-0` (!important), so the free space goes to the breadcrumb. */
+@media (min-width: 992px) {
+  #topbar #breadcrumb {
+    margin-right: auto;
+  }
+
+  #topbar #search {
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 991.98px) {
+  #topbar #search-trigger {
+    margin-left: auto;
+  }
+
+  #topbar:has(#search-cancel.d-block) #wn-theme-toggle {
+    display: none;
+  }
+}
+
+html.wn-theme-transition::view-transition-old(root),
+html.wn-theme-transition::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+html.wn-theme-transition::view-transition-old(root) {
+  z-index: 1;
+}
+
+html.wn-theme-transition::view-transition-new(root) {
+  z-index: 999;
 }
 
 /* ---------- Scroll reveal ---------- */
@@ -212,14 +364,14 @@ footer {
 
 .content .notice,
 .content [class*='notice--'] {
-  --wn-notice: var(--wn-overlay);
+  --wn-notice: var(--wn-notice-default);
 
   margin: 1.25rem 0;
   padding: 0.85rem 1.1rem;
   border: 1px solid color-mix(in srgb, var(--wn-notice) 35%, transparent);
   border-left: 4px solid var(--wn-notice);
   border-radius: 10px;
-  background: color-mix(in srgb, var(--wn-notice) 11%, transparent);
+  background: color-mix(in srgb, var(--wn-notice) 10%, transparent);
   color: var(--text-color);
 }
 
@@ -239,23 +391,23 @@ footer {
 }
 
 .content .notice--primary {
-  --wn-notice: #89b4fa;
+  --wn-notice: var(--wn-notice-primary);
 }
 
 .content .notice--info {
-  --wn-notice: #89dceb;
+  --wn-notice: var(--wn-notice-info);
 }
 
 .content .notice--warning {
-  --wn-notice: #f9e2af;
+  --wn-notice: var(--wn-notice-warning);
 }
 
 .content .notice--success {
-  --wn-notice: #a6e3a1;
+  --wn-notice: var(--wn-notice-success);
 }
 
 .content .notice--danger {
-  --wn-notice: #f38ba8;
+  --wn-notice: var(--wn-notice-danger);
 }
 
 .content a.btn--success {
@@ -263,15 +415,15 @@ footer {
   padding: 0.45rem 1rem;
   border-radius: 8px;
   border: 0;
-  background: #a6e3a1;
-  color: var(--wn-crust);
+  background: var(--wn-btn-success-bg);
+  color: var(--wn-btn-success-text);
   font-weight: 600;
   text-decoration: none;
 }
 
 .content a.btn--success:hover {
-  background: #94d68f;
-  color: var(--wn-crust);
+  background: var(--wn-btn-success-hover);
+  color: var(--wn-btn-success-text);
 }
 
 .wn-video {
@@ -312,5 +464,10 @@ footer {
     opacity: 1;
     transform: none;
     animation: none;
+  }
+
+  .wn-theme-icon,
+  #wn-theme-toggle {
+    transition: none;
   }
 }

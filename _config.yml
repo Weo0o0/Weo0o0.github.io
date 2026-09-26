@@ -44,7 +44,8 @@ analytics:
 pageviews:
   provider:
 
-theme_mode: dark
+# Empty keeps Chirpy's theme switcher enabled; the first visit starts dark (see _includes/metadata-hook.html).
+theme_mode:
 
 cdn:
 
