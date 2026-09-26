@@ -1,6 +1,8 @@
 {%- comment -%}
-  Copied from jekyll-theme-chirpy 7.6.0 `_includes/topbar.html` to add #wn-theme-toggle.
-  Re-copy from the installed gem when upgrading Chirpy, then re-add the toggle.
+  Copied from jekyll-theme-chirpy 7.6.0 `_includes/topbar.html`. The breadcrumb is replaced by the
+  #wn-brand banner, and #wn-theme-toggle, #wn-nav-toggle and the #wn-drawer menu are added.
+  Keep #sidebar-trigger, #topbar-title and #search-trigger: Chirpy's search script looks them up.
+  Re-copy from the installed gem when upgrading Chirpy, then re-apply these changes.
 {%- endcomment -%}
 <!-- The Top Bar -->
 
@@ -9,40 +11,45 @@
     id="topbar"
     class="d-flex align-items-center justify-content-between px-lg-3 h-100"
   >
-    <nav id="breadcrumb" aria-label="Breadcrumb">
-      {% assign paths = page.url | split: '/' %}
+    {%- comment -%} Terminal-style location, e.g. ~/home/sqli/SQLi-basic {%- endcomment -%}
+    {%- assign wn_path = page.url | url_decode | remove: 'index.html' -%}
+    {%- assign wn_last = wn_path | size | minus: 1 -%}
+    {%- if wn_last > 0 and wn_path contains '/' -%}
+      {%- assign wn_tail_char = wn_path | slice: wn_last -%}
+      {%- if wn_tail_char == '/' -%}{%- assign wn_path = wn_path | slice: 0, wn_last -%}{%- endif -%}
+    {%- endif -%}
+    {%- if wn_path == '/' or wn_path == '' -%}
+      {%- assign wn_display = '~/home' -%}
+    {%- else -%}
+      {%- assign wn_display = '~/home' | append: wn_path -%}
+    {%- endif -%}
+    {%- assign wn_display_short = wn_display -%}
+    {%- if wn_display.size > 34 -%}
+      {%- assign wn_tail = wn_path | split: '/' | last -%}
+      {%- assign wn_display_short = '~/…/' | append: wn_tail -%}
+      {%- if wn_display_short.size > 34 -%}
+        {%- assign wn_display_short = '~/…/' | append: wn_tail | slice: 0, 26 | append: '…' -%}
+      {%- endif -%}
+    {%- endif -%}
 
-      {% if paths.size == 0 or page.layout == 'home' %}
-        <!-- index page -->
-        <span>{{ site.data.locales[include.lang].tabs.home | capitalize }}</span>
-
-      {% else %}
-        {% for item in paths %}
-          {% if forloop.first %}
-            <span>
-              <a href="{{ '/' | relative_url }}">
-                {{- site.data.locales[include.lang].tabs.home | capitalize -}}
-              </a>
-            </span>
-
-          {% elsif forloop.last %}
-            {% if page.collection == 'tabs' %}
-              <span>{{ site.data.locales[include.lang].tabs[item] | default: page.title }}</span>
-            {% else %}
-              <span>{{ page.title }}</span>
-            {% endif %}
-
-          {% elsif page.layout == 'category' or page.layout == 'tag' %}
-            <span>
-              <a href="{{ item | append: '/' | relative_url }}">
-                {{- site.data.locales[include.lang].tabs[item] | default: page.title -}}
-              </a>
-            </span>
-          {% endif %}
-        {% endfor %}
-      {% endif %}
-    </nav>
-    <!-- endof #breadcrumb -->
+    <a
+      id="wn-brand"
+      class="wn-brand"
+      href="{{ '/' | relative_url }}"
+      aria-label="{{ site.title }} 홈"
+    >
+      <span class="wn-brand__logo" aria-hidden="true">
+        <img src="{{ site.avatar | relative_url }}" alt="" width="40" height="40">
+      </span>
+      <span class="wn-brand__divider" aria-hidden="true"></span>
+      <span class="wn-brand__copy">
+        <span class="wn-brand__name">
+          {{ site.title }}
+          <span class="wn-status" role="img" aria-label="운영 중"></span>
+        </span>
+        <span class="wn-brand__path" title="{{ wn_display | escape }}">{{ wn_display_short | escape }}</span>
+      </span>
+    </a>
 
     <button type="button" id="sidebar-trigger" class="btn btn-link" aria-label="Sidebar">
       <i class="fas fa-bars fa-fw"></i>
@@ -122,5 +129,87 @@
         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
       </svg>
     </button>
+
+    <button
+      type="button"
+      id="wn-nav-toggle"
+      class="btn btn-link"
+      aria-label="메뉴 열기"
+      aria-expanded="false"
+      aria-controls="wn-drawer"
+    >
+      <span class="wn-hamburger-line"></span>
+      <span class="wn-hamburger-line"></span>
+      <span class="wn-hamburger-line"></span>
+    </button>
   </div>
 </header>
+
+<div id="wn-drawer-backdrop" aria-hidden="true"></div>
+
+<nav id="wn-drawer" aria-label="모바일 메뉴">
+  <div class="wn-drawer__grid" aria-hidden="true"></div>
+
+  <div class="wn-drawer__links">
+    <div class="wn-drawer__item wn-drawer__heading" aria-hidden="true">// DIRECTORY_INDEX</div>
+
+    {%- assign wn_nav_index = 1 -%}
+    <a
+      href="{{ '/' | relative_url }}"
+      class="wn-drawer__item wn-drawer__link{% if page.layout == 'home' %} is-active{% endif %}"
+      data-nav-key="1"
+      aria-keyshortcuts="1"
+      {% if page.layout == 'home' %}aria-current="page"{% endif %}
+    >
+      <span class="wn-drawer__label">
+        <span class="wn-drawer__index" aria-hidden="true">[ 01 ]</span>
+        <span>{{ site.data.locales[include.lang].tabs.home }}</span>
+      </span>
+      <svg class="wn-drawer__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+    </a>
+
+    {%- for tab in site.tabs -%}
+      {%- assign wn_nav_index = wn_nav_index | plus: 1 -%}
+      {%- capture tab_name -%}{{ tab.url | split: '/' }}{%- endcapture -%}
+      {%- assign wn_active = false -%}
+      {%- if tab.url == page.url -%}{%- assign wn_active = true -%}{%- endif -%}
+      <a
+        href="{{ tab.url | relative_url }}"
+        class="wn-drawer__item wn-drawer__link{% if wn_active %} is-active{% endif %}"
+        {% if wn_nav_index < 10 %}data-nav-key="{{ wn_nav_index }}" aria-keyshortcuts="{{ wn_nav_index }}"{% endif %}
+        {% if wn_active %}aria-current="page"{% endif %}
+      >
+        <span class="wn-drawer__label">
+          <span class="wn-drawer__index" aria-hidden="true">[ {{ wn_nav_index | prepend: '0' | slice: -2, 2 }} ]</span>
+          <span>{{ site.data.locales[include.lang].tabs.[tab_name] | default: tab.title }}</span>
+        </span>
+        <svg class="wn-drawer__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    {%- endfor -%}
+  </div>
+
+  <div class="wn-drawer__telemetry">
+    <div class="wn-telemetry__row">
+      <span class="wn-telemetry__key">SYS.STATUS</span>
+      <span class="wn-telemetry__status"><span class="wn-status" aria-hidden="true"></span>ACTIVE</span>
+    </div>
+    <div class="wn-telemetry__grid">
+      <div>
+        <span class="wn-telemetry__key">SYS.CORES</span>
+        <span class="wn-telemetry__value" id="wn-sys-cores">—</span>
+      </div>
+      <div>
+        <span class="wn-telemetry__key">SYS.RTT</span>
+        <span class="wn-telemetry__value" id="wn-sys-rtt">—</span>
+      </div>
+    </div>
+    <div class="wn-telemetry__location">
+      <span class="wn-telemetry__key">SYS.LOCATION</span>
+      <span class="wn-telemetry__path" title="{{ wn_display | escape }}">{{ wn_display | escape }}</span>
+    </div>
+    <div class="wn-telemetry__hint">
+      <span>오른쪽으로 밀어 닫기</span>
+      <span>[ ESC ]</span>
+    </div>
+  </div>
+</nav>
