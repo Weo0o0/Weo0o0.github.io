@@ -108,7 +108,7 @@
 - 언제 시키나?:
   - “우리 블로그 규칙 먼저 읽고 고쳐줘”
   - “테마 원본은 건드리지 말고 덮어쓰기만 해줘”
-- 이 블로그에서 하는 일: 색·글꼴은 `assets/css/main.scss`, `_sass/_weo0o0-overrides.scss`만 쓰도록 안내합니다.
+- 이 블로그에서 하는 일: 색·글꼴·모션은 `assets/css/weo0o0.css`, `assets/js/weo0o0-motion.js`만 쓰도록 안내합니다.
 - 하지 않는 일: 예쁜 화면을 직접 그리지 않습니다. **길 안내**만 합니다.
 - 비유: 아파트 관리실의 “페인트 색·개조 금지” 안내문
 - 사용 예시 1: `weo0o0-jekyll-ui 규칙 지키고 홈 화면만 다듬어 줘.`
@@ -175,7 +175,7 @@
 - 비유: 식당 개업 전 보건소 점검
 - 사용 예시 1: `web-design-guidelines로 헤더, 검색, 404를 점검하고 파일 위치랑 같이 알려 줘.`
 - 사용 예시 2: `web-design-guidelines로 포커스랑 이미지 alt만 봐 줘.`
-- 사용 예시 3: `web-design-guidelines로 _includes/masthead.html을 리뷰해 줘.`
+- 사용 예시 3: `web-design-guidelines로 홈 글 카드와 사이드바를 리뷰해 줘.`
 
 ---
 
@@ -275,7 +275,7 @@
 - 하지 않는 일: 화면을 화려하게 다시 그리는 스킬이 아닙니다. **재료 명세서**를 만듭니다.
 - 비유: 옷장에서 자주 입는 옷의 색 번호·치수를 수첩에 적기
 - 사용 예시 1: `extract-design-system으로 지금 다크 스킨 색·서체·간격을 목록으로만 정리해 줘.`
-- 사용 예시 2: `extract-design-system으로 main.scss에 쓸 CSS 변수 초안만 만들어 줘.`
+- 사용 예시 2: `extract-design-system으로 weo0o0.css에 쓸 CSS 변수 초안만 만들어 줘.`
 - 사용 예시 3: `extract-design-system으로 현재 블로그 토큰을 표로 뽑아 줘. 화면은 바꾸지 마.`
 
 ---
