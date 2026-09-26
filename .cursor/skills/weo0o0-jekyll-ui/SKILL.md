@@ -26,7 +26,8 @@ This site is **Jekyll + jekyll-theme-chirpy (gem, 7.6.x) + Liquid + plain CSS/JS
 | Tokens, fonts, glass, notices, motion styles | [`assets/css/weo0o0.css`](../../../assets/css/weo0o0.css) |
 | Spotlight + scroll reveal behavior | [`assets/js/weo0o0-motion.js`](../../../assets/js/weo0o0-motion.js) |
 | Day/night toggle behavior (circle reveal, labels, theme-color) | [`assets/js/weo0o0-theme.js`](../../../assets/js/weo0o0-theme.js) |
-| Day/night toggle button markup | [`_includes/topbar.html`](../../../_includes/topbar.html) (copy of Chirpy 7.6.0; re-copy on upgrade) |
+| Top banner markup: brand + status dot + `~/home/…` path, day/night toggle, hamburger, mobile drawer | [`_includes/topbar.html`](../../../_includes/topbar.html) (copy of Chirpy 7.6.0; re-copy on upgrade and keep `#sidebar-trigger`, `#topbar-title`, `#search-trigger`, which Chirpy's search script needs) |
+| Banner behavior: glass on scroll, hide on scroll down, drawer (focus trap, ESC, swipe), telemetry, number-key shortcuts | [`assets/js/weo0o0-header.js`](../../../assets/js/weo0o0-header.js) |
 | Head meta, fonts, loading our CSS/JS | [`_includes/metadata-hook.html`](../../../_includes/metadata-hook.html) |
 | Sidebar tabs | [`_tabs/`](../../../_tabs/) (`order`, `icon`) |
 | Sidebar contact icons / share buttons | [`_data/contact.yml`](../../../_data/contact.yml), [`_data/share.yml`](../../../_data/share.yml) |
@@ -43,6 +44,7 @@ Chirpy applies theme tokens on `:root[data-bs-theme='dark']` and `:root[data-bs-
 - Palette follows dhaatrik.github.io: night `#0b0e14` base / `#f3f4f6` text / `#3b82f6` accent, day `#f8fafc` base / `#0f172a` text / `#2563eb` accent, cyan + purple glows, dotted grid. Keep light-mode text and notices at WCAG AA.
 - Gowun Batang for reading text and headings, Gowun Dodum for UI, Pretendard fallback.
 - Motion (ambient gradient, pointer spotlight, glass hover lift, card reveal) must stop under `prefers-reduced-motion`, and cards must never stay hidden if JS fails.
+- Below 992px the right-side drawer (`#wn-drawer`) replaces Chirpy's left sidebar; tabs come from `_tabs/` in `order`, and keys 1–9 follow the same order.
 - Old posts use Minimal Mistakes markup (`{: .notice--danger}`, `.btn--success`, `{% include video %}`); keep the compatibility styles and `_includes/video` instead of rewriting post bodies.
 
 ## Git repos mapped to this project
