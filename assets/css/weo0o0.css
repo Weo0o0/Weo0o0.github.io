@@ -1,0 +1,316 @@
+/*
+  Weo0o0-Note layer on top of Chirpy.
+  Palette: Catppuccin Mocha surfaces + brand teal #00adb5.
+  Type: Gowun Batang (reading) / Gowun Dodum (UI) with Pretendard fallback.
+*/
+
+:root[data-bs-theme='dark'] {
+  --wn-base: #1e1e2e;
+  --wn-mantle: #181825;
+  --wn-crust: #11111b;
+  --wn-surface0: #313244;
+  --wn-surface1: #45475a;
+  --wn-overlay: #6c7086;
+  --wn-subtext: #a6adc8;
+  --wn-text: #cdd6f4;
+  --wn-teal: #00adb5;
+  --wn-mauve: #cba6f7;
+  --wn-glass: rgb(30 30 46 / 55%);
+  --wn-glass-strong: rgb(24 24 37 / 72%);
+  --wn-glass-border: rgb(205 214 244 / 8%);
+  --wn-ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --main-bg: var(--wn-base);
+  --main-border-color: var(--wn-surface0);
+  --text-color: var(--wn-text);
+  --text-muted-color: var(--wn-subtext);
+  --text-muted-highlight-color: #bac2de;
+  --heading-color: #e4e8fa;
+  --label-color: var(--wn-subtext);
+  --link-color: var(--wn-teal);
+  --link-underline-color: rgb(0 173 181 / 45%);
+  --blockquote-border-color: var(--wn-surface1);
+  --blockquote-text-color: var(--wn-subtext);
+  --button-bg: var(--wn-surface0);
+  --btn-border-color: var(--wn-surface1);
+  --card-bg: var(--wn-glass);
+  --card-header-bg: var(--wn-surface0);
+  --card-hover-bg: var(--wn-surface1);
+  --menu-bg: var(--wn-mantle);
+  --site-title-color: var(--wn-text);
+  --site-subtitle-color: var(--wn-subtext);
+  --sidebar-bg: var(--wn-glass-strong);
+  --sidebar-border-color: var(--wn-glass-border);
+  --sidebar-muted-color: var(--wn-subtext);
+  --sidebar-active-color: #f5f7ff;
+  --sidebar-hover-bg: rgb(69 71 90 / 45%);
+  --sidebar-btn-bg: var(--wn-surface0);
+  --sidebar-btn-color: var(--wn-subtext);
+  --topbar-bg: rgb(30 30 46 / 62%);
+  --search-border-color: var(--wn-surface1);
+  --search-icon-color: var(--wn-overlay);
+  --input-focus-border-color: var(--wn-teal);
+  --post-list-text-color: var(--wn-subtext);
+  --btn-paginator-hover-color: var(--wn-surface0);
+  --toc-highlight: var(--wn-teal);
+  --tag-hover: rgb(0 173 181 / 18%);
+  --tag-border: var(--wn-surface1);
+  --highlight-bg-color: var(--wn-mantle);
+  --inline-code-bg: rgb(205 214 244 / 7%);
+  --code-color: #bac2de;
+  --timeline-color: var(--wn-surface1);
+  --timeline-node-bg: var(--wn-overlay);
+  --categories-border: rgb(69 71 90 / 60%);
+  --categories-hover-bg: var(--wn-surface0);
+  --footnote-target-bg: rgb(0 173 181 / 30%);
+}
+
+/* ---------- Type ---------- */
+
+body {
+  font-family: 'Gowun Dodum', Pretendard, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.content,
+#post-list .card-title,
+.site-title {
+  font-family: 'Gowun Batang', Georgia, 'Times New Roman', serif;
+}
+
+.content {
+  line-height: 1.85;
+  word-break: keep-all;
+}
+
+:focus-visible {
+  outline: 2px solid var(--wn-teal);
+  outline-offset: 2px;
+}
+
+/* ---------- Ambient background + spotlight ---------- */
+
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  pointer-events: none;
+  z-index: -1;
+}
+
+body::before {
+  inset: -25%;
+  background:
+    radial-gradient(38% 32% at 22% 18%, rgb(0 173 181 / 13%), transparent 70%),
+    radial-gradient(34% 30% at 82% 72%, rgb(203 166 247 / 9%), transparent 70%),
+    radial-gradient(30% 26% at 60% 12%, rgb(137 180 250 / 6%), transparent 70%);
+  animation: wn-drift 48s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+body::after {
+  inset: 0;
+  opacity: 0;
+  background: radial-gradient(
+    420px circle at var(--wn-x, 50%) var(--wn-y, 50%),
+    rgb(0 173 181 / 10%),
+    transparent 65%
+  );
+  transition: opacity 0.4s ease;
+}
+
+.wn-pointer body::after {
+  opacity: 1;
+}
+
+@keyframes wn-drift {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+
+  50% {
+    transform: translate3d(4%, -3%, 0) rotate(4deg);
+  }
+
+  100% {
+    transform: translate3d(-3%, 4%, 0) rotate(-3deg);
+  }
+}
+
+footer {
+  background-color: transparent;
+}
+
+/* ---------- Glass surfaces ---------- */
+
+#sidebar {
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  backdrop-filter: blur(16px) saturate(140%);
+  border-right: 1px solid var(--wn-glass-border);
+}
+
+#topbar-wrapper {
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  backdrop-filter: blur(12px) saturate(140%);
+}
+
+#post-list .card-wrapper.card {
+  background: var(--wn-glass);
+  border: 1px solid var(--wn-glass-border);
+  border-radius: 14px;
+  -webkit-backdrop-filter: blur(10px) saturate(130%);
+  backdrop-filter: blur(10px) saturate(130%);
+  box-shadow: 0 1px 0 rgb(255 255 255 / 3%) inset, 0 10px 30px -18px rgb(0 0 0 / 70%);
+  transition:
+    transform 0.35s var(--wn-ease),
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+#post-list .card-wrapper.card:hover,
+#post-list .card-wrapper.card:focus-within {
+  transform: translateY(-3px);
+  border-color: rgb(0 173 181 / 35%);
+  box-shadow: 0 1px 0 rgb(255 255 255 / 4%) inset, 0 18px 40px -20px rgb(0 173 181 / 35%);
+}
+
+#post-list .card-wrapper.card > a:focus-visible {
+  outline-offset: -2px;
+  border-radius: 14px;
+}
+
+/* ---------- Scroll reveal ---------- */
+
+.wn-motion #post-list .card-wrapper:not(.wn-in) {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.wn-motion #post-list .card-wrapper.wn-in {
+  animation: wn-rise 0.6s var(--wn-ease) backwards;
+  animation-delay: var(--wn-delay, 0ms);
+}
+
+@keyframes wn-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- Minimal Mistakes compatibility (post bodies) ---------- */
+
+.content .notice,
+.content [class*='notice--'] {
+  --wn-notice: var(--wn-overlay);
+
+  margin: 1.25rem 0;
+  padding: 0.85rem 1.1rem;
+  border: 1px solid color-mix(in srgb, var(--wn-notice) 35%, transparent);
+  border-left: 4px solid var(--wn-notice);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--wn-notice) 11%, transparent);
+  color: var(--text-color);
+}
+
+.content [class*='notice--'] > :first-child {
+  margin-top: 0;
+}
+
+.content [class*='notice--'] > :last-child {
+  margin-bottom: 0;
+}
+
+.content [class*='notice--'] h2,
+.content [class*='notice--'] h3 {
+  font-size: 1.05rem;
+  border: 0;
+  padding: 0;
+}
+
+.content .notice--primary {
+  --wn-notice: #89b4fa;
+}
+
+.content .notice--info {
+  --wn-notice: #89dceb;
+}
+
+.content .notice--warning {
+  --wn-notice: #f9e2af;
+}
+
+.content .notice--success {
+  --wn-notice: #a6e3a1;
+}
+
+.content .notice--danger {
+  --wn-notice: #f38ba8;
+}
+
+.content a.btn--success {
+  display: inline-block;
+  padding: 0.45rem 1rem;
+  border-radius: 8px;
+  border: 0;
+  background: #a6e3a1;
+  color: var(--wn-crust);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.content a.btn--success:hover {
+  background: #94d68f;
+  color: var(--wn-crust);
+}
+
+.wn-video {
+  position: relative;
+  margin: 1.25rem 0;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.wn-video iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  body::before {
+    animation: none;
+  }
+
+  body::after {
+    display: none;
+  }
+
+  #post-list .card-wrapper.card,
+  #post-list .card-wrapper.card:hover,
+  #post-list .card-wrapper.card:focus-within {
+    transform: none;
+    transition: none;
+  }
+
+  .wn-motion #post-list .card-wrapper {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
