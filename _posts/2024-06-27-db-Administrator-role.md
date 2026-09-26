@@ -1,8 +1,8 @@
 ---
-layout: single
+layout: post
 title:  "데이터베이스 관리자 역활"
 categories: Database
-tag: [데이터베이스, 관리자 권한, 이론]
+tags: [데이터베이스, 관리자 권한, 이론]
 toc: true
 published: true
 ---

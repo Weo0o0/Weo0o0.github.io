@@ -1,8 +1,8 @@
 ---
-layout: single
+layout: post
 title:  "bee-box 키보드 설정방법"
 categories: bee-box
-tag: [bee-box, 설정]
+tags: [bee-box, 설정]
 toc: true
 sidebar:
     nav: "docs"

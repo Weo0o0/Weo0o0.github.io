@@ -1,8 +1,8 @@
 ---
-layout: single
+layout: post
 title:  "데이터베이스 설계 및 SQL쿼리"
 categories: Database SQL
-tag: [SQL, 데이터베이스,이론]
+tags: [SQL, 데이터베이스,이론]
 toc: true
 ---
 

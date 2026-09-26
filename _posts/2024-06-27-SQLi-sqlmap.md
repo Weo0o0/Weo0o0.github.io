@@ -1,8 +1,8 @@
 ---
-layout: single
+layout: post
 title:  "SQLi-sqlmap-03"
 categories: coding
-tag: [python, blog]
+tags: [python, blog]
 toc: true
 published: false
 ---

@@ -1,8 +1,8 @@
 ---
-layout: single
+layout: post
 title: "관리자 권한의 종류와 시스템 권한"
 categories: etc
-tag: [이론, 권한]
+tags: [이론, 권한]
 toc: true
 ---
 

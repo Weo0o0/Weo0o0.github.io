@@ -1,8 +1,8 @@
 ---
-layout: single
+layout: post
 title:  "디지털 논리"
 categories: Digital-Logic
-tag: [디지털 논리, 이론]
+tags: [디지털 논리, 이론]
 toc: true
 ---
 **[공지사항]** [본 블로그에 포함된 모든 정보는 교육 목적으로만 제공됩니다.](https://weo0o0.github.io/notice/notice/)
