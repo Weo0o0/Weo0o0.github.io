@@ -30,6 +30,7 @@ This site is **Jekyll + jekyll-theme-chirpy (gem, 7.6.x) + Liquid + plain CSS/JS
 | Banner behavior: glass on scroll, hide on scroll down, drawer (focus trap, ESC, swipe), telemetry, number-key shortcuts | [`assets/js/weo0o0-header.js`](../../../assets/js/weo0o0-header.js) |
 | Head meta, fonts, loading our CSS/JS | [`_includes/metadata-hook.html`](../../../_includes/metadata-hook.html) |
 | Sidebar tabs | [`_tabs/`](../../../_tabs/) (`order`, `icon`) |
+| Project shelf (not a post category) | [`_tabs/projects.md`](../../../_tabs/projects.md), [`_layouts/projects.html`](../../../_layouts/projects.html), [`_data/projects.yml`](../../../_data/projects.yml). Only list public GitHub URLs a visitor can open. |
 | Sidebar contact icons / share buttons | [`_data/contact.yml`](../../../_data/contact.yml), [`_data/share.yml`](../../../_data/share.yml) |
 | Site settings | [`_config.yml`](../../../_config.yml) |
 | Browser-tab icon (favicon) | [`assets/img/favicons/`](../../../assets/img/favicons/) and [`_includes/favicons.html`](../../../_includes/favicons.html). Chirpy's gem ships a blue bird here; replace these files to change the tab icon. Source portrait is `avatar` in `_config.yml` (`/assets/images/logo.jpg`). |

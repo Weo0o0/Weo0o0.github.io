@@ -1,0 +1,13 @@
+# 사이드바 「프로젝트」에 나오는 목록.
+# 방문자가 열 수 있는 공개 GitHub 주소만 적는다.
+# status: 진행 또는 완료
+# group: 페이지에서 묶는 이름 (글 카테고리와는 별개)
+
+- name: obsidian-repo-library
+  title: Obsidian Repo Library
+  group: 도구
+  status: 완료
+  language: Shell
+  summary: GitHub 저장소를 Obsidian 안에서 도서관 카드로 정리하는 템플릿입니다.
+  url: https://github.com/Weo0o0/obsidian-repo-library
+  updated: 2026-09-04

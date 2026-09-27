@@ -994,6 +994,100 @@ html.wn-topbar-shown #toc-wrapper {
   border: 0;
 }
 
+/* ---------- Projects tab ---------- */
+
+.wn-projects__lead {
+  max-width: 42rem;
+  margin: 0 0 1.5rem;
+  color: var(--wn-text-muted);
+}
+
+.wn-projects__group {
+  margin: 1.5rem 0 0.75rem;
+  font-family: "Gowun Dodum", Pretendard, sans-serif;
+  font-size: 1.05rem;
+}
+
+.wn-projects__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.wn-project {
+  margin: 0;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--wn-line);
+  border-radius: 0.75rem;
+  background: var(--wn-card);
+  box-shadow: var(--wn-card-shadow);
+}
+
+.wn-project__meta,
+.wn-project__foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+  align-items: center;
+  margin: 0;
+  color: var(--wn-text-muted);
+  font-family: "Gowun Dodum", Pretendard, sans-serif;
+  font-size: 0.85rem;
+}
+
+.wn-project__status,
+.wn-project__lang {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--wn-line);
+  line-height: 1.4;
+}
+
+.wn-project__status {
+  color: var(--wn-heading);
+  border-color: rgb(var(--wn-accent-rgb) / 45%);
+}
+
+.wn-project__title {
+  margin: 0.6rem 0 0.35rem;
+  font-size: 1.15rem;
+}
+
+.wn-project__title a {
+  color: var(--wn-heading);
+  text-decoration: none;
+}
+
+.wn-project__title a:hover {
+  color: var(--wn-accent);
+}
+
+.wn-project a:focus-visible {
+  outline: 2px solid var(--wn-accent);
+  outline-offset: 3px;
+}
+
+.wn-project__summary {
+  margin: 0 0 0.75rem;
+}
+
+.wn-project__foot a {
+  color: var(--wn-accent);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .wn-project {
+    transition: background-color 160ms var(--wn-ease), border-color 160ms var(--wn-ease);
+  }
+
+  .wn-project:hover {
+    background: var(--wn-card-hover);
+  }
+}
+
 /* ---------- Reduced motion ---------- */
 
 @media (prefers-reduced-motion: reduce) {

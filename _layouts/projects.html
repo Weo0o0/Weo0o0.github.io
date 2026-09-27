@@ -1,0 +1,38 @@
+---
+layout: page
+---
+
+<section class="wn-projects" aria-label="프로젝트">
+  <p class="wn-projects__lead">
+    GitHub에 공개한 작업입니다. 글의 카테고리와는 따로 모았습니다.
+  </p>
+
+  {% assign groups = site.data.projects | group_by: "group" %}
+  {% for group in groups %}
+    <h2 class="wn-projects__group" id="wn-project-group-{{ forloop.index }}">{{ group.name }}</h2>
+    <ul class="wn-projects__list">
+      {% for project in group.items %}
+        <li>
+          <article class="wn-project" aria-labelledby="wn-project-{{ project.name }}">
+            <p class="wn-project__meta">
+              <span class="wn-project__status">{{ project.status }}</span>
+              {% if project.language %}
+                <span class="wn-project__lang">{{ project.language }}</span>
+              {% endif %}
+            </p>
+            <h3 class="wn-project__title" id="wn-project-{{ project.name }}">
+              <a href="{{ project.url }}">{{ project.title | default: project.name }}</a>
+            </h3>
+            <p class="wn-project__summary">{{ project.summary }}</p>
+            <p class="wn-project__foot">
+              <a href="{{ project.url }}" rel="noopener noreferrer">GitHub에서 보기</a>
+              {% if project.updated %}
+                <span>최근 반영 {{ project.updated }}</span>
+              {% endif %}
+            </p>
+          </article>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endfor %}
+</section>
