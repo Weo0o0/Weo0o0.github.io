@@ -10,6 +10,6 @@ When changing UI:
 
 1. Read `.cursor/skills/weo0o0-jekyll-ui/SKILL.md` and apply `impeccable`, `web-design-guidelines`, `frontend-design`, `check-fix-accessibility` as relevant.
 2. Put visual tokens and styles in `assets/css/weo0o0.css`, behavior in `assets/js/weo0o0-motion.js`, head wiring in `_includes/metadata-hook.html`. Only override a Chirpy layout/include when CSS cannot do it, copied from the installed gem version.
-3. Keep Catppuccin Mocha surfaces (`#1e1e2e` base, `#cdd6f4` text) and brand teal `#00adb5`. Pair Gowun Batang (reading) with Gowun Dodum (UI) and Pretendard fallback.
-4. Preserve dark mode, `:focus-visible`, and `prefers-reduced-motion` rules. Keep post URLs `/:categories/:title/`.
+3. Keep the dhaatrik-derived day/night palette (night `#0b0e14` / blue `#3b82f6`, day `#f8fafc` / blue `#2563eb`) for both `data-bs-theme` values, and switch themes only via Chirpy's `Theme.update()`. Pair Gowun Batang (reading) with Gowun Dodum (UI) and Pretendard fallback.
+4. Preserve both themes, `:focus-visible`, and `prefers-reduced-motion` rules. Keep post URLs `/:categories/:title/`.
 5. Verify with `npm run pa11y:home` / `npm run pa11y:ci` when a local Jekyll server is available.
