@@ -32,6 +32,7 @@ This site is **Jekyll + jekyll-theme-chirpy (gem, 7.6.x) + Liquid + plain CSS/JS
 | Sidebar tabs | [`_tabs/`](../../../_tabs/) (`order`, `icon`) |
 | Sidebar contact icons / share buttons | [`_data/contact.yml`](../../../_data/contact.yml), [`_data/share.yml`](../../../_data/share.yml) |
 | Site settings | [`_config.yml`](../../../_config.yml) |
+| Browser-tab icon (favicon) | [`assets/img/favicons/`](../../../assets/img/favicons/) and [`_includes/favicons.html`](../../../_includes/favicons.html). Chirpy's gem ships a blue bird here; replace these files to change the tab icon. Source portrait is `avatar` in `_config.yml` (`/assets/images/logo.jpg`). |
 
 Chirpy files live in the gem (`bundle info --path jekyll-theme-chirpy`). A file with the same path in this repo replaces the theme's copy, so only override a Chirpy layout or include when CSS cannot do the job, and copy it from the installed gem version.
 
