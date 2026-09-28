@@ -29,6 +29,7 @@ This site is **Jekyll + jekyll-theme-chirpy (gem, 7.6.x) + Liquid + plain CSS/JS
 | Top banner markup: brand + status dot + `~/home/…` path, day/night toggle, hamburger, mobile drawer | [`_includes/topbar.html`](../../../_includes/topbar.html) (copy of Chirpy 7.6.0; re-copy on upgrade and keep `#sidebar-trigger`, `#topbar-title`, `#search-trigger`, which Chirpy's search script needs) |
 | Banner behavior: glass on scroll, hide on scroll down, drawer (focus trap, ESC, swipe), telemetry, number-key shortcuts | [`assets/js/weo0o0-header.js`](../../../assets/js/weo0o0-header.js) |
 | Head meta, fonts, loading our CSS/JS | [`_includes/metadata-hook.html`](../../../_includes/metadata-hook.html) |
+| PC right guide (바로가기) below Chirpy's 1200px cutoff | [`assets/css/weo0o0.css`](../../../assets/css/weo0o0.css) and [`assets/js/weo0o0-toc.js`](../../../assets/js/weo0o0-toc.js). Show `#panel-wrapper` from 992px. Do not change the layout under 992px. |
 | Sidebar tabs | [`_tabs/`](../../../_tabs/) (`order`, `icon`) |
 | Project shelf (not a post category) | [`_tabs/projects.md`](../../../_tabs/projects.md), [`_layouts/projects.html`](../../../_layouts/projects.html), [`_data/projects.yml`](../../../_data/projects.yml). Only list public GitHub URLs a visitor can open. |
 | Sidebar contact icons / share buttons | [`_data/contact.yml`](../../../_data/contact.yml), [`_data/share.yml`](../../../_data/share.yml) |

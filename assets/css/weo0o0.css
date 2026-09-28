@@ -366,6 +366,45 @@ html.wn-topbar-shown #toc-wrapper {
   top: var(--wn-topbar-h);
 }
 
+/*
+  Chirpy hides the right guide (#panel-wrapper, 바로가기) until 1200px.
+  This site's PC layout starts at 992px, so show that column there too.
+  Below 992px the mobile drawer stays as-is.
+*/
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  #panel-wrapper {
+    display: block;
+    flex: 0 0 17.5rem;
+    width: 17.5rem;
+    max-width: 17.5rem;
+  }
+
+  #main-wrapper > .container > .row {
+    justify-content: flex-start !important;
+    flex-wrap: nowrap;
+  }
+
+  #main-wrapper main.col-lg-11,
+  #tail-wrapper.col-lg-11 {
+    flex: 1 1 auto;
+    width: auto;
+    max-width: calc(100% - 17.5rem);
+  }
+
+  #toc-solo-trigger,
+  #toc-bar {
+    display: none !important;
+  }
+}
+
+#toc .toc-link.node-name--H3 {
+  padding-left: 2rem;
+}
+
+#toc .toc-link.node-name--H4 {
+  padding-left: 2.75rem;
+}
+
 .wn-brand {
   display: flex;
   align-items: center;
