@@ -34,6 +34,7 @@ This site is **Jekyll + jekyll-theme-chirpy (gem, 7.6.x) + Liquid + plain CSS/JS
 | Project shelf (not a post category) | [`_tabs/projects.md`](../../../_tabs/projects.md), [`_layouts/projects.html`](../../../_layouts/projects.html), [`_data/projects.yml`](../../../_data/projects.yml). Only list public GitHub URLs a visitor can open. |
 | Sidebar contact icons / share buttons | [`_data/contact.yml`](../../../_data/contact.yml), [`_data/share.yml`](../../../_data/share.yml) |
 | Site settings | [`_config.yml`](../../../_config.yml) |
+| New post skeleton (4 sections, not published) | [`_drafts/post-template.md`](../../../_drafts/post-template.md). Copy it into `_posts`. Reading measure and section spacing live in `weo0o0.css` under `.content`. |
 | Browser-tab icon (favicon) | [`assets/img/favicons/`](../../../assets/img/favicons/) and [`_includes/favicons.html`](../../../_includes/favicons.html). Chirpy's gem ships a blue bird here; replace these files to change the tab icon. Source portrait is `avatar` in `_config.yml` (`/assets/images/logo.jpg`). |
 
 Chirpy files live in the gem (`bundle info --path jekyll-theme-chirpy`). A file with the same path in this repo replaces the theme's copy, so only override a Chirpy layout or include when CSS cannot do the job, and copy it from the installed gem version.

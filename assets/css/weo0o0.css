@@ -137,8 +137,130 @@ h6,
 }
 
 .content {
-  line-height: 1.85;
+  font-size: clamp(1.0625rem, 1rem + 0.2vw, 1.125rem);
+  line-height: 1.8;
   word-break: keep-all;
+}
+
+.content p,
+.content li,
+.content blockquote {
+  max-width: 40em;
+}
+
+.content h2 {
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--wn-line);
+  font-size: clamp(1.5rem, 1.35rem + 0.4vw, 1.75rem);
+  line-height: 1.4;
+}
+
+.content h2:first-of-type {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.content h3 {
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+  line-height: 1.45;
+}
+
+.content h4 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.0625rem;
+  line-height: 1.45;
+}
+
+.content p,
+.content ul,
+.content ol,
+.content blockquote,
+.content .highlighter-rouge,
+.content .table-wrapper,
+.content .wn-round {
+  margin-bottom: 1rem;
+}
+
+.content li + li {
+  margin-top: 0.5rem;
+}
+
+.content blockquote {
+  margin-top: 1rem;
+  line-height: 1.7;
+}
+
+.content blockquote.wn-lede {
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+  padding: 0.25rem 0 0.25rem 1rem;
+  border-left: 3px solid var(--wn-accent);
+  color: var(--wn-heading);
+  font-size: 1.25rem;
+  line-height: 1.55;
+}
+
+.content .table-wrapper {
+  max-width: 100%;
+}
+
+.content .table-wrapper th,
+.content .table-wrapper td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  vertical-align: top;
+  white-space: normal;
+  line-height: 1.6;
+}
+
+.content .table-wrapper th {
+  font-family: 'Gowun Dodum', Pretendard, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--wn-heading);
+}
+
+.content .wn-round {
+  max-width: 40em;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding: 1.25rem 1.25rem 0.5rem 1rem;
+  border: 1px solid rgb(var(--wn-line-rgb) / 28%);
+  border-left: 3px solid var(--wn-heading);
+  border-radius: 12px;
+  background: var(--wn-card);
+}
+
+.content .wn-round p > strong:first-child {
+  font-family: 'Gowun Dodum', Pretendard, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--wn-text-muted);
+}
+
+.content .wn-round h4 {
+  margin-top: 0;
+}
+
+.content .wn-round p {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.content img {
+  max-width: 100%;
+  height: auto;
+}
+
+.content pre,
+.content .highlight {
+  line-height: 1.55;
 }
 
 :focus-visible {
