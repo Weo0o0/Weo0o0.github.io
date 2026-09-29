@@ -18,36 +18,80 @@ date: 2026-09-29 15:30:00 +0900
 
 ## 1. 문제 발생
 
-한 줄로 말하면 이렇습니다.
-
-> 크롬이 자물쇠 없는 문을 두드려 `HTTP ERROR 400`이 났고, 고친 길은 서버에 SSH로 들어가는 것이 아니라 그록 가상 PC 터미널이 웹을 열지 않고 API를 호출한 것이다.
+> 그록 가상 PC에서 작성자가 만든 웹 페이지를 크롬으로 접속 했을때 `HTTP ERROR 400`이 났고, 해결 방법으로 서버에 SSH로 들어가는 것이 아닌 그록 가상 PC 터미널이 웹을 열지 않고 API를 호출하였다.
 {: .wn-lede }
 
-미국 주식 자동매매 대시보드는 Hetzner 서버의 `5056`번 문에서 돌아가고 있었다. 포트(Port)는 건물 하나의 문 번호다. 그록봇은 매일 세 단계를 맡고 있었다.
+작성자는 미국 주식 자동매매를 하기 위해 웹 페이지를 만들었고, 해당 웹 페이지는 Hetzner 서버의 `5056` Port(건물 하나의 문 번호다.) 문에서 돌아가고 있었다. 그록봇은 매일 자동으로 세 단계의 루틴을 진행하고 있었다.
 
 1. Gemini로 종목 CSV를 만든다.
 2. 그 파일을 시트와 다운로드 폴더에 둔다.
-3. 크롬으로 `http://77.42.64.226:5056/universe-rsi`에 들어가 RSI 게이트를 돌리고, 통과한 종목을 유니버스에 게시한다.
+3. 크롬으로 `http://00.00.00.000:5056/universe-rsi`에 들어가 RSI 게이트를 돌리고, 통과한 종목을 유니버스에 게시한다.
 
-이틀은 됐다. 사흘째 크롬은 이 문구만 보여 줬다.
-
+그록 가상 PC에서 자동 루틴에서 이틀은 동작되었다. 삼일째 자동 루틴 진행 중 가상 PC 크롬에서 이 문구만 보여 줬다.
 ```text
 This page isn't working. HTTP ERROR 400
 ```
 
-캐시를 지우고 시크릿 창을 열어도 같았다. 사장님의 첫 의심은 합리적이었다. 문을 너무 자주 여닫아서, 서버가 그록봇의 주소(IP)를 출입 금지 명단에 올린 것 아니냐. 같은 시각 Hetzner 상태 페이지에는 Object Storage 장애 화면도 떠 있었다.
+해당 주요 문제 발생 원인
+• 주소(URL) 오타: 잘못된 문자나 오타가 포함된 경우
+• 쿠키 및 캐시 충돌: 브라우저에 저장된 해당 사이트의 데이터가 손상되거나 너무 오래된 경우
+• 파일 크기 초과: 업로드하려는 파일이 서버 허용 용량보다 큰 경우
 
-목표는 두 가지였다. 400의 원인을 코드와 서버 로그로 확정하는 것. 그리고 그록봇이 대시보드 웹 페이지를 열지 않고 3단계를 끝내게 하는 것.
+이 문제를 해결하기 위해 가상 PC의 크롬 캐시를 지우고 시크릿 창을 열어도 같았다. 웹을 문을 너무 자주 여닫아서, 서버가 그록봇의 주소(IP)를 출입 금지 명단에 올린 것 아닌가 하는 의심도 했다. 같은 시각 Hetzner 상태 페이지에는 Object Storage 장애 화면도 떠 있었다.
 
-비유하면, 알바생이 정문에 열쇠를 꽂으려다 쫓겨난 사건이다. 처음 떠오른 수리 방법은 건물 뒤편 관리자 문(SSH)으로 들어가는 것이었다. 그 장면은 검토만 하고 쓰지 않았다.
+![Hetzner 상태 페이지의 Object Storage HEL1 장애](/assets/img/hetzner-object-storage-hel1.png)
+
+목표는 두 가지였다. 
+1. 400의 원인을 코드와 서버 로그로 확정하여 문제 파악하는 것.
+2. 그록봇이 대시보드 웹 페이지를 열지 않고 3단계를 끝내게 하는 것.
+
+비유하면, 알바생이 정문에 열쇠를 꽂으려다 쫓겨난 사건이다. 처음 떠오른 해결 방법은 건물 뒤편 관리자 문(SSH)으로 들어가는 것이었다. 
 
 문제가 어떻게 보였는지는 [HTTP 400 기록](/http/http-400-https-on-plain-port/)에 이어서 두었습니다.
 
 ## 2. 원인 확인
 
-저장소를 뒤져도 IP를 막는 줄은 없었다. `deploy_stock_long_lab/dashboard/dashboard_auth.py`의 문지기는 비밀번호(토큰)만 본다. 로그인하지 않은 페이지는 302로 `/login`에 보내고, API는 401을 준다. HTML 화면 자체가 400이 되는 코드는 없다.
+코드를 뒤져도 IP를 막는 줄은 없었다. `deploy_stock_long_lab/dashboard/dashboard_auth.py`의 문지기는 손님 주소가 아니라 비밀번호(토큰)만 본다. 요청이 들어올 때마다 아래 함수가 먼저 돈다.
 
-서버 기록(`journalctl`)에 범인이 있었다.
+```python
+@app.before_request
+def _require_dashboard_token() -> Any:
+    ep = request.endpoint or ""
+    if ep in _OPEN_ENDPOINTS:
+        return None
+    if viewer_authorized():
+        return None
+    if request.path.startswith("/api/"):
+        return jsonify({"status": "error", "error": "unauthorized_login_required"}), 401
+    nxt = request.full_path if request.query_string else request.path
+    if nxt.endswith("?"):
+        nxt = nxt[:-1]
+    return redirect(url_for("dashboard_login", next=nxt))
+```
+
+줄마다 보면 이렇다.
+- `before_request`는 주방(각 페이지 함수)에 들어가기 전의 문지기다. 여기에는 `request.remote_addr` 같은 IP 비교가 없다.
+  
+- `_OPEN_ENDPOINTS`에 있는 로그인·환영·정적 파일은 통과시킨다.
+  
+- `viewer_authorized()`는 세션에 로그인 표시가 있거나, 헤더 `X-Settings-Token`이 환경변수 `US_SETTINGS_DASHBOARD_TOKEN`과 같을 때만 참이다.
+  
+- 그 둘이 아니면 갈린다. 주소가 `/api/`로 시작하면 `401`과 `unauthorized_login_required`를 돌려준다. 화면 주소면 `redirect(...)`라서 Flask 기본값인 `302`로 `/login`에 보낸다.
+  
+- 이 함수가 돌려주는 상태는 401과 302뿐이다. HTML 화면이 400이 되는 `return`은 없다. 그래서 크롬의 400은 이 문지기가 만든 거절이 아니다.
+
+웹 서버에서 발생하는 로그를 파악하기 위해  아래와 같은 명령어를 입력한다.
+
+```bash
+journalctl -u us-stock-dashboard --since "2026-09-22" --no-pager | grep -F "Bad request version"
+```
+
+- `-u us-stock-dashboard`는 매매 봇이 아니라 5056번 문을 연 서비스만 고른다.
+- `--since`는 그 날짜 이후만 본다. 최근 줄만 보려면 `--since` 대신 `-n 200`을 쓴다.
+- `--no-pager`는 화면을 잡고 있는 읽기 모드 없이 출력하고 끝낸다.
+- `grep -F`는 따옴표 안 문장을 글자 그대로 찾는다.
+
+그때 남는 로그가 아래와 같다.
 
 ```text
 code 400, message Bad request version
@@ -56,10 +100,7 @@ code 400, message Bad request version
 
 `\x16\x03\x01`은 브라우저가 "지금부터 자물쇠 통신(HTTPS, TLS 악수)을 하겠다"고 보내는 첫 바이트다. `5056`은 평문 HTTP만 받는다. 자물쇠 없는 문에 열쇠를 꽂으니, 문지기가 주문서를 읽기도 전에 400을 돌려준 것이다. 로그인과 RSI 코드는 실행되지 않았다.
 
-같은 사람 IP에서 13초 차이가 결정적이었다. `03:03:15`의 HTTPS 시도는 400, `03:03:28`의 `GET / HTTP/1.1`은 200. 서버는 살아 있었고, 주소 방식만 달랐다.
-
 그록 가상 크롬은 주소창에 `http://`를 쳐도 뒤에서 `https://`로 바꾼다. 그래서 캐시 삭제와 시크릿 모드가 소용없었다. Hetzner Object Storage HEL1 장애는 사진·파일을 맡기는 창고 상품의 문제라, 우리가 빌린 컴퓨터 알림과도 무관했다.
-
 
 | 증상처럼 보이는 것      | 실제에 가까운 것                         |
 | --------------- | --------------------------------- |
@@ -68,29 +109,28 @@ code 400, message Bad request version
 | Hetzner 창고 장애   | 다른 상품. 이 서버 알림과 무관                |
 | 캐시를 지워도 400     | 가상 크롬이 `http`를 `https`로 바꿈        |
 
-
 원인을 로그에서 읽는 법은 [주니어 팁 풀어쓰기](/http/junior-tips-first-byte-and-loopback/)에 이어서 두었습니다.
 
 ## 3. 문제 해결
 
-원인은 확인됐다. 고치는 방법은 SSH로 매매 서버에 들어가는 장면처럼 보였지만, 그 길은 쓰지 않았다.
+원인은 확인됐다. 해결 방법은 SSH로 매매 서버에 들어가는 방법도 있지만 그 방향으로 문제 해결하지 않겠다.
 
 그록 PC에는 xfce 터미널만 있고 `ssh`는 없었다. 22번 문이 막혀 있을 수 있고, 서버 열쇠를 가상 PC에 두는 것도 위험했다. 더 단순한 사실이 있었다. 400이 났다는 것은 `5056`까지 연결은 됐다는 뜻이다. 크롬만 말을 자물쇠로 바꿨을 뿐이다. 터미널의 `curl`은 그 자동 변경을 하지 않는다.
 
-**바꾸기 전.** 3단계는 크롬 클릭이었다.
+**바꾸기 전.** 3단계는 크롬 웹에서 클릭을 통해 자동화 하였다.
 
 1. 모니터 `http://77.42.64.226:5056/`를 연다.
 2. 유니버스 RSI 페이지에서 오늘 CSV를 고르고 `게이트 실행`을 누른다.
 3. PASS를 읽고, 충분하면 게시, 봇 재시작, OHLCV sync를 누른다.
 
-이 클릭이 400에서 멈췄다.
+1단계 웹 접속 단계 진행 중 400에서 멈췄다.
 
 **바꾼 후.** 1~2단계(Gemini, 시트, `/home/box/Downloads`에 CSV 저장)는 그대로다. 3단계만 터미널이 같은 API를 호출한다. 매일 바뀌는 시트 파일명은 가장 최근 CSV를 고정 이름으로 복사해서 흡수한다. 토큰은 명령어 글자가 아니라 파일에서만 읽는다.
 
 ```bash
 set -euo pipefail
 TOKEN="$(cat /home/box/.secrets/trading-upload-token)"
-BASE="http://77.42.64.226:5056"
+BASE="http://00.00.00.000:5056"
 
 latest="$(ls -1t /home/box/Downloads/*.csv | head -n 1)"
 cp "$latest" /home/box/Downloads/us_rsi_candidates.csv
@@ -157,7 +197,7 @@ flowchart TD
 
 ### Industry Convention
 
-자동화 봇에게 관리자 웹 화면을 클릭하게 두는 것은 임시방편이다. 사람이 보는 화면과 기계가 호출하는 API를 나누고, 토큰은 명령어 글자가 아니라 비밀 파일에서 읽은 뒤 `unset`한다. SSH로 매매 서버에 직접 들어가는 것은 더 센 권한이라, 이번 문제의 정답이 아니었다. 400은 연결이 됐다는 증거였고, 고칠 대상은 크롬의 말버릇이었다.
+자동화 봇에게 관리자 웹 화면을 클릭하게 두는 것은 임시방편이다. 사람이 보는 화면과 기계가 호출하는 API를 나누고, 토큰은 명령어 글자가 아니라 비밀 파일에서 읽은 뒤 `unset`한다. SSH로 매매 서버에 직접 들어가는 것은 더 센 권한이라, 이번 문제의 정답이 아니었다. 400은 연결이 됐다는 증거였다.
 
 ### 주니어 실전 팁 3가지
 
