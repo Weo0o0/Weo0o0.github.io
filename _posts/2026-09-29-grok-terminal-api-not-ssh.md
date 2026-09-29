@@ -9,14 +9,14 @@ mermaid: true
 date: 2026-09-29 15:30:00 +0900
 ---
 
-읽는 순서입니다. 이 글이 기승전결이고, 각 막 끝의 링크가 다음 장면입니다.
+읽는 순서입니다. 이 글은 문제 발생에서 문제 해결로 가고, 각 절 끝의 링크가 다음 글입니다.
 
 1. 이 글
 2. [HTTP 400 기록](/http/http-400-https-on-plain-port/)
 3. [주니어 팁 풀어쓰기](/http/junior-tips-first-byte-and-loopback/)
 4. [HTTP·HTTPS·TLS·gunicorn 학습](/http/learn-http-https-gunicorn-tls/)
 
-## 기. 도입 (Context & Goal)
+## 1. 문제 발생
 
 한 줄로 말하면 이렇습니다.
 
@@ -41,9 +41,9 @@ This page isn't working. HTTP ERROR 400
 
 비유하면, 알바생이 정문에 열쇠를 꽂으려다 쫓겨난 사건이다. 처음 떠오른 수리 방법은 건물 뒤편 관리자 문(SSH)으로 들어가는 것이었다. 그 장면은 검토만 하고 쓰지 않았다.
 
-이 날의 현장, 등장인물, 의심이 어디서 갈렸는지는 [HTTP 400 기록](/http/http-400-https-on-plain-port/)에 이어서 두었습니다.
+문제가 어떻게 보였는지는 [HTTP 400 기록](/http/http-400-https-on-plain-port/)에 이어서 두었습니다.
 
-## 승. 트러블슈팅 (Micro-Debugging)
+## 2. 원인 확인
 
 저장소를 뒤져도 IP를 막는 줄은 없었다. `deploy_stock_long_lab/dashboard/dashboard_auth.py`의 문지기는 비밀번호(토큰)만 본다. 로그인하지 않은 페이지는 302로 `/login`에 보내고, API는 401을 준다. HTML 화면 자체가 400이 되는 코드는 없다.
 
@@ -60,18 +60,20 @@ code 400, message Bad request version
 
 그록 가상 크롬은 주소창에 `http://`를 쳐도 뒤에서 `https://`로 바꾼다. 그래서 캐시 삭제와 시크릿 모드가 소용없었다. Hetzner Object Storage HEL1 장애는 사진·파일을 맡기는 창고 상품의 문제라, 우리가 빌린 컴퓨터 알림과도 무관했다.
 
-| 증상처럼 보이는 것 | 실제에 가까운 것 |
-| --- | --- |
-| 너무 자주 열어서 IP 차단 | 토큰 검사만 있다. HTML이 400이 되는 줄은 없다 |
-| 앱이 거절했다 | 로그 첫 바이트 `\x16`이라 문지기가 요청 줄을 못 읽음 |
-| Hetzner 창고 장애 | 다른 상품. 이 서버 알림과 무관 |
-| 캐시를 지워도 400 | 가상 크롬이 `http`를 `https`로 바꿈 |
 
-첫 바이트를 칸으로 나누고, 13초 대조를 읽는 법은 [주니어 팁 풀어쓰기](/http/junior-tips-first-byte-and-loopback/)에 이어서 두었습니다.
+| 증상처럼 보이는 것      | 실제에 가까운 것                         |
+| --------------- | --------------------------------- |
+| 너무 자주 열어서 IP 차단 | 토큰 검사만 있다. HTML이 400이 되는 줄은 없다    |
+| 앱이 거절했다         | 로그 첫 바이트 `\x16`이라 문지기가 요청 줄을 못 읽음 |
+| Hetzner 창고 장애   | 다른 상품. 이 서버 알림과 무관                |
+| 캐시를 지워도 400     | 가상 크롬이 `http`를 `https`로 바꿈        |
 
-## 전. 해결 과정 & 코드 (Solution)
 
-여기서 이야기가 꺾인다. 고치는 방법은 SSH로 매매 서버에 들어가는 장면처럼 보였다. 검토해 보니 그 길은 쓰지 않았다.
+원인을 로그에서 읽는 법은 [주니어 팁 풀어쓰기](/http/junior-tips-first-byte-and-loopback/)에 이어서 두었습니다.
+
+## 3. 문제 해결
+
+원인은 확인됐다. 고치는 방법은 SSH로 매매 서버에 들어가는 장면처럼 보였지만, 그 길은 쓰지 않았다.
 
 그록 PC에는 xfce 터미널만 있고 `ssh`는 없었다. 22번 문이 막혀 있을 수 있고, 서버 열쇠를 가상 PC에 두는 것도 위험했다. 더 단순한 사실이 있었다. 400이 났다는 것은 `5056`까지 연결은 됐다는 뜻이다. 크롬만 말을 자물쇠로 바꿨을 뿐이다. 터미널의 `curl`은 그 자동 변경을 하지 않는다.
 
@@ -137,9 +139,13 @@ flowchart TD
   restart --> preflight["OHLCV sync와 preflight"]
 ```
 
-쪽지(HTTP), 자물쇠 봉투(TLS), 주소의 `https`, 요리사(gunicorn)를 가게 이야기로 푼 글은 [HTTP·HTTPS·TLS·gunicorn 학습](/http/learn-http-https-gunicorn-tls/)에 이어서 두었습니다.
 
-## 결. 딥다이브 (What I Learned)
+
+해결에 나온 HTTP, TLS, HTTPS, gunicorn을 가게 이야기로 푼 글은 [HTTP·HTTPS·TLS·gunicorn 학습](/http/learn-http-https-gunicorn-tls/)에 이어서 두었습니다.
+
+## 4. 정리
+
+
 
 ### Framework Deep-Dive
 
@@ -159,4 +165,4 @@ flowchart TD
 - 브라우저 자동 루틴이 막히면 버튼 클릭을 고치지 말고, 그 버튼이 호출하는 API를 터미널로 재현한다.
 - 매일 바뀌는 다운로드 파일명은 스크립트에 박지 말고, 가장 최근 파일을 고정 이름으로 복사한 뒤 그 이름만 올린다.
 
-막을 따라 다시 읽으려면 [HTTP 400 기록](/http/http-400-https-on-plain-port/)에서 시작해, [주니어 팁 풀어쓰기](/http/junior-tips-first-byte-and-loopback/), [HTTP·HTTPS·TLS·gunicorn 학습](/http/learn-http-https-gunicorn-tls/) 순서로 가면 됩니다.
+문제에서 해결로 다시 읽으려면 [HTTP 400 기록](/http/http-400-https-on-plain-port/)에서 시작해, [주니어 팁 풀어쓰기](/http/junior-tips-first-byte-and-loopback/), [HTTP·HTTPS·TLS·gunicorn 학습](/http/learn-http-https-gunicorn-tls/) 순서로 가면 됩니다.

@@ -9,7 +9,7 @@ mermaid: true
 date: 2026-09-22 10:00:00 +0900
 ---
 
-이 글은 [기승전결](/http/grok-terminal-api-not-ssh/)에서 **승** 다음에 이어집니다. 다음 글은 [HTTP·HTTPS·TLS·gunicorn 학습](/http/learn-http-https-gunicorn-tls/)입니다.
+이 글은 [문제 발생에서 문제 해결까지](/http/grok-terminal-api-not-ssh/)의 원인 확인 다음에 이어집니다. 다음 글은 [HTTP·HTTPS·TLS·gunicorn 학습](/http/learn-http-https-gunicorn-tls/)입니다.
 
 원문: [자물쇠 없는 5056번 문에 https를 꽂아 400이 난 기록](/http/http-400-https-on-plain-port/)
 

@@ -9,7 +9,7 @@ mermaid: true
 date: 2026-09-22 09:00:00 +0900
 ---
 
-이 글은 [크롬이 자물쇠를 두드린 날의 기승전결](/http/grok-terminal-api-not-ssh/)에서 **기** 다음에 이어집니다. 다음 글은 [주니어 팁 풀어쓰기](/http/junior-tips-first-byte-and-loopback/)입니다.
+이 글은 [문제 발생에서 문제 해결까지](/http/grok-terminal-api-not-ssh/)의 문제 발생 다음에 이어집니다. 다음 글은 [주니어 팁 풀어쓰기](/http/junior-tips-first-byte-and-loopback/)입니다.
 
 ## 1. 도입 (Context & Goal)
 
