@@ -9,6 +9,8 @@ mermaid: true
 date: 2026-09-22 11:00:00 +0900
 ---
 
+이 글은 [기승전결](/http/grok-terminal-api-not-ssh/)에서 **전** 다음에 이어집니다. 결로 돌아가려면 [그 글의 마지막 막](/http/grok-terminal-api-not-ssh/)을 보면 됩니다.
+
 관련 기록: [자물쇠 없는 5056번 문에 https를 꽂아 400이 난 기록](/http/http-400-https-on-plain-port/)
 
 ## 1. 도입 (Context & Goal)
